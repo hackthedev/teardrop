@@ -23,9 +23,21 @@ namespace teardrop
 
         private void Form1_Load(object sender, EventArgs e)
         {            
-            Task.Run (() => GetFiles());
+            if(Properties.Settings.Default.key.Length != 34)
+            {
+                Properties.Settings.Default.key = Crypto.GetRandomString(34);
+                Properties.Settings.Default.Save();
+                Properties.Settings.Default.Reload();
+
+                write("Generated key: " + Properties.Settings.Default.key);
+            }
+            else
+            {
+                write("Key is: " + Properties.Settings.Default.key);
+            }
 
 
+            Task.Run(() => GetFiles());
         }
 
         public void write(string text)
@@ -86,6 +98,8 @@ namespace teardrop
                         write(s);
                     }
                 }
+
+                write("Done getting files");
             }
             catch (Exception ex2)
             {
