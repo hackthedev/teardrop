@@ -83,7 +83,7 @@ namespace teardrop
                     };
 
                     if (validExtensions.Contains(ext)){
-                        write("Found file: " + s);
+                        write(s);
                     }
                 }
             }
