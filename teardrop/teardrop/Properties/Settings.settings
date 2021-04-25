@@ -5,5 +5,8 @@
     <Setting Name="key" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="extension" Type="System.String" Scope="User">
+      <Value Profile="(Default)">.fallentear</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -34,5 +34,17 @@ namespace teardrop.Properties {
                 this["key"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(".fallentear")]
+        public string extension {
+            get {
+                return ((string)(this["extension"]));
+            }
+            set {
+                this["extension"] = value;
+            }
+        }
     }
 }

@@ -37,10 +37,10 @@ namespace teardrop
             this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(131, 104);
+            this.textBox1.Location = new System.Drawing.Point(38, 37);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(894, 904);
+            this.textBox1.Size = new System.Drawing.Size(532, 318);
             this.textBox1.TabIndex = 0;
             // 
             // Form1
@@ -48,7 +48,7 @@ namespace teardrop
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(1182, 1153);
+            this.ClientSize = new System.Drawing.Size(607, 396);
             this.ControlBox = false;
             this.Controls.Add(this.textBox1);
             this.Font = new System.Drawing.Font("Exo 2", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

