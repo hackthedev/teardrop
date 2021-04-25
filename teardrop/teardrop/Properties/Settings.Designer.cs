@@ -46,5 +46,65 @@ namespace teardrop.Properties {
                 this["extension"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("127.0.0.1")]
+        public string db_host {
+            get {
+                return ((string)(this["db_host"]));
+            }
+            set {
+                this["db_host"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("root")]
+        public string db_user {
+            get {
+                return ((string)(this["db_user"]));
+            }
+            set {
+                this["db_user"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string db_pass {
+            get {
+                return ((string)(this["db_pass"]));
+            }
+            set {
+                this["db_pass"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("teardrop")]
+        public string db_database {
+            get {
+                return ((string)(this["db_database"]));
+            }
+            set {
+                this["db_database"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool db_enable {
+            get {
+                return ((bool)(this["db_enable"]));
+            }
+            set {
+                this["db_enable"] = value;
+            }
+        }
     }
 }

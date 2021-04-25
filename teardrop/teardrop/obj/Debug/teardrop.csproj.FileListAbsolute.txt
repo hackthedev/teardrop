@@ -31,3 +31,5 @@ D:\vs\teardrop\teardrop\teardrop\obj\Debug\teardrop.csproj.CoreCompileInputs.cac
 D:\vs\teardrop\teardrop\teardrop\obj\Debug\teardrop.csproj.CopyComplete
 D:\vs\teardrop\teardrop\teardrop\obj\Debug\teardrop.exe
 D:\vs\teardrop\teardrop\teardrop\obj\Debug\teardrop.pdb
+D:\vs\teardrop\teardrop\teardrop\bin\Debug\DeviceId.dll
+D:\vs\teardrop\teardrop\teardrop\bin\Debug\DeviceId.xml

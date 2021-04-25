@@ -8,5 +8,20 @@
     <Setting Name="extension" Type="System.String" Scope="User">
       <Value Profile="(Default)">.fallentear</Value>
     </Setting>
+    <Setting Name="db_host" Type="System.String" Scope="User">
+      <Value Profile="(Default)">127.0.0.1</Value>
+    </Setting>
+    <Setting Name="db_user" Type="System.String" Scope="User">
+      <Value Profile="(Default)">root</Value>
+    </Setting>
+    <Setting Name="db_pass" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="db_database" Type="System.String" Scope="User">
+      <Value Profile="(Default)">teardrop</Value>
+    </Setting>
+    <Setting Name="db_enable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
