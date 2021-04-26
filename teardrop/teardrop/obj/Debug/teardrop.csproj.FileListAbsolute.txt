@@ -23,7 +23,6 @@ D:\vs\teardrop\teardrop\teardrop\bin\Debug\System.Buffers.xml
 D:\vs\teardrop\teardrop\teardrop\bin\Debug\System.Memory.xml
 D:\vs\teardrop\teardrop\teardrop\bin\Debug\System.Numerics.Vectors.xml
 D:\vs\teardrop\teardrop\teardrop\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
-D:\vs\teardrop\teardrop\teardrop\obj\Debug\teardrop.csprojAssemblyReference.cache
 D:\vs\teardrop\teardrop\teardrop\obj\Debug\teardrop.Form1.resources
 D:\vs\teardrop\teardrop\teardrop\obj\Debug\teardrop.Properties.Resources.resources
 D:\vs\teardrop\teardrop\teardrop\obj\Debug\teardrop.csproj.GenerateResource.cache

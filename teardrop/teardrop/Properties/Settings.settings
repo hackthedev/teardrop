@@ -23,5 +23,11 @@
     <Setting Name="db_enable" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="debug" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="application_title" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Your Title Here</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

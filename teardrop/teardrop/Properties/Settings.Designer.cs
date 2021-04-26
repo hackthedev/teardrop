@@ -106,5 +106,29 @@ namespace teardrop.Properties {
                 this["db_enable"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool debug {
+            get {
+                return ((bool)(this["debug"]));
+            }
+            set {
+                this["debug"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Your Title Here")]
+        public string application_title {
+            get {
+                return ((string)(this["application_title"]));
+            }
+            set {
+                this["application_title"] = value;
+            }
+        }
     }
 }
