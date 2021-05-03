@@ -8,12 +8,15 @@ Welcome to the teardrop Ransomware Project. This project was created for educati
 - Encrypt all Files in Directories and Sub-Directories
   - <i>(Is also encrypting other connected hard drives)</i>
   - <i>Added Multi-Threading! Very Speedy Now!</i>
-   <br>
+
+<br>
+   
 - Debug "Console"
 - Generates and Saves Encryption Key in Application
 - Runs as Administrator
   - <i>(Can be changed in app.manifest)</i>
-    <br>
+
+<br>
     
 - Encrypt Certain folders first
   - <i>Currently encrypting desktop folder first</i>
