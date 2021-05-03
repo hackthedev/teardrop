@@ -13,6 +13,10 @@ Welcome to the teardrop Ransomware Project. This project was created for educati
 - Generates and Saves Encryption Key in Application
 - Runs as Administrator
   - <i>(Can be changed in app.manifest)</i>
+    <br>
+    
+- Encrypt Certain folders first
+  - <i>Currently encrypting desktop folder first</i>
 
 <br>
 
