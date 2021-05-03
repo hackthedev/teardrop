@@ -118,6 +118,8 @@ namespace teardrop
                     Application.DoEvents();
                     fsOut.Write(buffer, 0, read);
                 }
+
+                
             }
             catch (CryptographicException ex_CryptographicException)
             {
@@ -141,6 +143,7 @@ namespace teardrop
                 fsOut.Close();
                 fsCrypt.Close();
             }
+
         }
     }
 }
