@@ -5,14 +5,21 @@ Welcome to the teardrop Ransomware Project. This project was created for educati
 
 ## Features
 - Send Decryption Key, Unique DeviceID to MySQL Server
-- Encrypt all Files in Directories and Sub-Directories
-  - <i>(Is also encrypting other connected hard drives)</i>
+- Create unique Device ID to identify computer
+- Create File with custom message in eighter plain text or HTML Markup
+
+<br>
+
+- Encrypt all Files in Directories and Sub-Directories from all connected Drives
   - <i>Added Multi-Threading! Very Speedy Now!</i>
 
 <br>
    
 - Debug "Console"
 - Generates and Saves Encryption Key in Application
+
+<br>
+
 - Runs as Administrator
   - <i>(Can be changed in app.manifest)</i>
 
