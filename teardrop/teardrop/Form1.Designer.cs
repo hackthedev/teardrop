@@ -67,7 +67,7 @@ namespace teardrop
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox3.BackColor = System.Drawing.Color.DarkRed;
             this.textBox3.ForeColor = System.Drawing.Color.White;
-            this.textBox3.Location = new System.Drawing.Point(19, 699);
+            this.textBox3.Location = new System.Drawing.Point(19, 700);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(899, 31);
             this.textBox3.TabIndex = 2;
@@ -90,6 +90,7 @@ namespace teardrop
             this.textBox1.Location = new System.Drawing.Point(19, 102);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(1189, 573);
             this.textBox1.TabIndex = 0;
             // 

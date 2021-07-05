@@ -32,4 +32,4 @@ D:\vs\teardrop\teardrop\teardrop\obj\Debug\teardrop.exe
 D:\vs\teardrop\teardrop\teardrop\obj\Debug\teardrop.pdb
 D:\vs\teardrop\teardrop\teardrop\bin\Debug\DeviceId.dll
 D:\vs\teardrop\teardrop\teardrop\bin\Debug\DeviceId.xml
-D:\vs\teardrop\teardrop\teardrop\obj\Debug\teardrop.csprojAssemblyReference.cache
+D:\vs\teardrop\teardrop\teardrop\obj\Debug\teardrop.csproj.AssemblyReference.cache
