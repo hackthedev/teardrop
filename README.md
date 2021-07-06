@@ -4,9 +4,13 @@ Welcome to the teardrop Ransomware Project. This project was created for educati
 <br>
 
 ## Features
-- Send Decryption Key, Unique DeviceID to MySQL Server
-- Create unique Device ID to identify computer
-- Create File with custom message in eighter plain text or HTML Markup
+- Sned Machine Info to SQL Server
+- Uniquely identify machines
+- Create a message on each drive as file
+- Log errors in text file
+- Disable/Enable Taskmanager
+- Enrcypt certain folders first
+- Save encryption key in application
 
 <br>
 
