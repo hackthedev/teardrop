@@ -4,13 +4,15 @@ Welcome to the teardrop Ransomware Project. This project was created for educati
 <br>
 
 ## Features
-- Sned Machine Info to SQL Server
+- Send Machine Info to SQL Server
 - Uniquely identify machines
 - Create a message on each drive as file
 - Log errors in text file
 - Disable/Enable Taskmanager
 - Enrcypt certain folders first
 - Save encryption key in application
+- Simulate Mouse Click
+- Set Mouse Pointer Location
 
 <br>
 
