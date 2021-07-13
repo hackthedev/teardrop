@@ -14,6 +14,11 @@ Welcome to the teardrop Ransomware Project. This project was created for educati
 - Save encryption key in application
 - Simulate Mouse Click
 - Set Mouse Pointer Location
+- Overlaying other application
+- Hidden from Taskbar
+- Extension Whitelist
+- Deletes original file
+- Cancels Form Closing Event
 
 <br>
 
