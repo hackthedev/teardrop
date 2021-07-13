@@ -4,6 +4,7 @@ Welcome to the teardrop Ransomware Project. This project was created for educati
 <br>
 
 ## Features
+- Strong AES 256 Bit Encryption
 - Send Machine Info to SQL Server
 - Uniquely identify machines
 - Create a message on each drive as file
