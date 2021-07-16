@@ -1,0 +1,824 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DeviceId</name>
+    </assembly>
+    <members>
+        <member name="T:DeviceId.CommandExecutors.BashCommandExecutor">
+            <summary>
+            An implementation of <see cref="T:DeviceId.CommandExecutors.ICommandExecutor"/> that uses /bin/bash to execute commands.
+            </summary>
+        </member>
+        <member name="M:DeviceId.CommandExecutors.BashCommandExecutor.Execute(System.String)">
+            <summary>
+            Executes the specified command.
+            </summary>
+            <param name="command">The command to execute.</param>
+            <returns>The command output.</returns>
+        </member>
+        <member name="T:DeviceId.CommandExecutors.CommandExecutor">
+            <summary>
+            Enumerate the various command executors that are available.
+            </summary>
+        </member>
+        <member name="P:DeviceId.CommandExecutors.CommandExecutor.Bash">
+            <summary>
+            Gets a command executor that uses /bin/bash to execute commands.
+            </summary>
+        </member>
+        <member name="T:DeviceId.CommandExecutors.CommandExecutorBase">
+            <summary>
+            A base implementation of <see cref="T:DeviceId.CommandExecutors.ICommandExecutor"/>.
+            </summary>
+        </member>
+        <member name="M:DeviceId.CommandExecutors.CommandExecutorBase.Execute(System.String)">
+            <summary>
+            Executes the specified command.
+            </summary>
+            <param name="command">The command to execute.</param>
+            <returns>The command output.</returns>
+        </member>
+        <member name="M:DeviceId.CommandExecutors.CommandExecutorBase.RunWithShell(System.String,System.String)">
+            <summary>
+            Runs the specified command with the specified shell.
+            </summary>
+            <param name="shell">The shell to use.</param>
+            <param name="command">The command to run.</param>
+            <returns>The output.</returns>
+        </member>
+        <member name="T:DeviceId.CommandExecutors.ICommandExecutor">
+            <summary>
+            Provides functionality to execute a command.
+            </summary>
+        </member>
+        <member name="M:DeviceId.CommandExecutors.ICommandExecutor.Execute(System.String)">
+            <summary>
+            Executes the specified command.
+            </summary>
+            <param name="command">The command to execute.</param>
+            <returns>The command output.</returns>
+        </member>
+        <member name="T:DeviceId.Components.CommandComponent">
+            <summary>
+            An implementation of <see cref="T:DeviceId.IDeviceIdComponent"/> that executes a command.
+            </summary>
+        </member>
+        <member name="P:DeviceId.Components.CommandComponent.Name">
+            <summary>
+            Gets the name of the component.
+            </summary>
+        </member>
+        <member name="F:DeviceId.Components.CommandComponent._command">
+            <summary>
+            The command executed by the component.
+            </summary>
+        </member>
+        <member name="F:DeviceId.Components.CommandComponent._commandExecutor">
+            <summary>
+            The command executor to use.
+            </summary>
+        </member>
+        <member name="M:DeviceId.Components.CommandComponent.#ctor(System.String,System.String,DeviceId.CommandExecutors.ICommandExecutor)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DeviceId.Components.CommandComponent"/> class.
+            </summary>
+            <param name="name">The name of the component.</param>
+            <param name="command">The command executed by the component.</param>
+            <param name="commandExecutor">The command executor.</param>
+        </member>
+        <member name="M:DeviceId.Components.CommandComponent.GetValue">
+            <summary>
+            Gets the component value.
+            </summary>
+            <returns>The component value.</returns>
+        </member>
+        <member name="T:DeviceId.Components.DeviceIdComponent">
+            <summary>
+            An implementation of <see cref="T:DeviceId.IDeviceIdComponent"/> that uses either a specified value
+            or the result of a specified function as its component value.
+            </summary>
+        </member>
+        <member name="P:DeviceId.Components.DeviceIdComponent.Name">
+            <summary>
+            Gets the name of the component.
+            </summary>
+        </member>
+        <member name="F:DeviceId.Components.DeviceIdComponent._valueFactory">
+            <summary>
+            A function that returns the component value.
+            </summary>
+        </member>
+        <member name="M:DeviceId.Components.DeviceIdComponent.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DeviceId.Components.DeviceIdComponent"/> class.
+            </summary>
+            <param name="name">The name of the component.</param>
+            <param name="value">The component value.</param>
+        </member>
+        <member name="M:DeviceId.Components.DeviceIdComponent.#ctor(System.String,System.Func{System.String})">
+            <summary>
+            Initializes a new instance of the <see cref="T:DeviceId.Components.DeviceIdComponent"/> class.
+            </summary>
+            <param name="name">The name of the component.</param>
+            <param name="valueFactory">A function that returns the component value.</param>
+        </member>
+        <member name="M:DeviceId.Components.DeviceIdComponent.GetValue">
+            <summary>
+            Gets the component value.
+            </summary>
+            <returns>The component value.</returns>
+        </member>
+        <member name="T:DeviceId.Components.FileDeviceIdComponent">
+            <summary>
+            An implementation of <see cref="T:DeviceId.IDeviceIdComponent"/> that retrieves its value from a file.
+            </summary>
+        </member>
+        <member name="P:DeviceId.Components.FileDeviceIdComponent.Name">
+            <summary>
+            Gets the name of the component.
+            </summary>
+        </member>
+        <member name="F:DeviceId.Components.FileDeviceIdComponent._paths">
+            <summary>
+            The paths of file we should look at.
+            </summary>
+        </member>
+        <member name="F:DeviceId.Components.FileDeviceIdComponent._shouldHashContents">
+            <summary>
+            Should the contents of the file be hashed? (Relevant for sources such as /proc/cpuinfo)
+            </summary>
+        </member>
+        <member name="M:DeviceId.Components.FileDeviceIdComponent.#ctor(System.String,System.String,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DeviceId.Components.FileTokenDeviceIdComponent"/> class.
+            </summary>
+            <param name="name">The name of the component.</param>
+            <param name="path">The path of the file holding the component ID.</param>
+            <param name="shouldHashContents">Whether the file contents should be hashed.</param>
+        </member>
+        <member name="M:DeviceId.Components.FileDeviceIdComponent.#ctor(System.String,System.Collections.Generic.IEnumerable{System.String},System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DeviceId.Components.FileTokenDeviceIdComponent"/> class.
+            </summary>
+            <param name="name">The name of the component.</param>
+            <param name="paths">The paths of the files holding the component ID.</param>
+            <param name="shouldHashContents">Whether the file contents should be hashed.</param>
+        </member>
+        <member name="M:DeviceId.Components.FileDeviceIdComponent.GetValue">
+            <summary>
+            Gets the component value.
+            </summary>
+            <returns>The component value.</returns>
+        </member>
+        <member name="T:DeviceId.Components.FileTokenDeviceIdComponent">
+            <summary>
+            An implementation of <see cref="T:DeviceId.IDeviceIdComponent"/> that retrieves its value from a file.
+            </summary>
+            <remarks>
+            If the file exists, the contents of that file will be used as the component value.
+            If the file does not exist, a new file will be created and populated with a new GUID,
+            which will be used as the component value.
+            </remarks>
+        </member>
+        <member name="P:DeviceId.Components.FileTokenDeviceIdComponent.Name">
+            <summary>
+            Gets the name of the component.
+            </summary>
+        </member>
+        <member name="F:DeviceId.Components.FileTokenDeviceIdComponent._path">
+            <summary>
+            The path where the token will be stored.
+            </summary>
+        </member>
+        <member name="M:DeviceId.Components.FileTokenDeviceIdComponent.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DeviceId.Components.FileTokenDeviceIdComponent"/> class.
+            </summary>
+            <param name="name">The name of the component.</param>
+            <param name="path">The path where the component will be stored.</param>
+        </member>
+        <member name="M:DeviceId.Components.FileTokenDeviceIdComponent.GetValue">
+            <summary>
+            Gets the component value.
+            </summary>
+            <returns>The component value.</returns>
+        </member>
+        <member name="T:DeviceId.Components.LinuxRootDriveSerialNumberDeviceIdComponent">
+            <summary>
+            An implementation of <see cref="T:DeviceId.IDeviceIdComponent"/> that uses the root drive's serial number.
+            </summary>
+        </member>
+        <member name="P:DeviceId.Components.LinuxRootDriveSerialNumberDeviceIdComponent.Name">
+            <summary>
+            Gets the name of the component.
+            </summary>
+        </member>
+        <member name="F:DeviceId.Components.LinuxRootDriveSerialNumberDeviceIdComponent._commandExecutor">
+            <summary>
+            Command executor.
+            </summary>
+        </member>
+        <member name="M:DeviceId.Components.LinuxRootDriveSerialNumberDeviceIdComponent.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:DeviceId.Components.LinuxRootDriveSerialNumberDeviceIdComponent"/> class.
+            </summary>
+        </member>
+        <member name="M:DeviceId.Components.LinuxRootDriveSerialNumberDeviceIdComponent.#ctor(DeviceId.CommandExecutors.ICommandExecutor)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DeviceId.Components.LinuxRootDriveSerialNumberDeviceIdComponent"/> class.
+            </summary>
+            <param name="commandExecutor">The command executor to use.</param>
+        </member>
+        <member name="M:DeviceId.Components.LinuxRootDriveSerialNumberDeviceIdComponent.GetValue">
+            <summary>
+            Gets the component value.
+            </summary>
+            <returns>The component value.</returns>
+        </member>
+        <member name="T:DeviceId.Components.NetworkAdapterDeviceIdComponent">
+            <summary>
+            An implementation of <see cref="T:DeviceId.IDeviceIdComponent"/> that retrieves data from installed network adapaters.
+            </summary>
+            <remarks>
+            Based on Win32_NetworkAdapter WMI class or using the CIMv2 based MSFT_NetAdapter WMI class (Windows 8 and up only).
+            Optionally filters out non physical network adapters (not related to virtual machines) and wireless adapters.
+            </remarks>
+        </member>
+        <member name="P:DeviceId.Components.NetworkAdapterDeviceIdComponent.Name">
+            <summary>
+            Gets the name of the component.
+            </summary>
+        </member>
+        <member name="F:DeviceId.Components.NetworkAdapterDeviceIdComponent._excludeNonPhysical">
+            <summary>
+            A value indicating whether non-physical adapters should be excluded.
+            </summary>
+        </member>
+        <member name="F:DeviceId.Components.NetworkAdapterDeviceIdComponent._excludeWireless">
+            <summary>
+            A value indicating whether wireless adapters should be excluded.
+            </summary>
+        </member>
+        <member name="M:DeviceId.Components.NetworkAdapterDeviceIdComponent.#ctor(System.Boolean,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DeviceId.Components.NetworkAdapterDeviceIdComponent"/> class.
+            </summary>
+            <param name="excludeNonPhysical">A value indicating whether non-physical adapters should be excluded.</param>
+            <param name="excludeWireless">Indicates if wireless adapters should be excluded.</param>
+            <remarks>
+            Non physical adapters are unlikely to have a stable MAC address.
+            For wireless adapters MAC randomization is a frequently offered function, making it unsuitable for identifying a device.
+            </remarks>
+        </member>
+        <member name="M:DeviceId.Components.NetworkAdapterDeviceIdComponent.GetValue">
+            <summary>
+            Gets the component value.
+            </summary>
+            <returns>The component value.</returns>
+        </member>
+        <member name="M:DeviceId.Components.NetworkAdapterDeviceIdComponent.GetMacAddressesUsingWmi">
+            <summary>
+            Retrieves the MAC addresses using the (old) Win32_NetworkAdapter WMI class.
+            </summary>
+            <returns>A list of MAC addresses.</returns>
+        </member>
+        <member name="M:DeviceId.Components.NetworkAdapterDeviceIdComponent.GetMacAddressesUsingCimV2">
+            <summary>
+            Retrieves the MAC addresses using the CIMv2 based MSFT_NetAdapter interface (Windows 8 and up).
+            </summary>
+            <returns>A list of MAC addresses.</returns>
+        </member>
+        <member name="M:DeviceId.Components.NetworkAdapterDeviceIdComponent.FormatMacAddress(System.String)">
+            <summary>
+            Formats the specified MAC address.
+            </summary>
+            <param name="input">The MAC address to format.</param>
+            <returns>The formatted MAC address.</returns>
+        </member>
+        <member name="T:DeviceId.Components.RegistryValueDeviceIdComponent">
+            <summary>
+            An implementation of <see cref="T:DeviceId.IDeviceIdComponent"/> that retrieves its value from the Windows registry.
+            </summary>
+        </member>
+        <member name="P:DeviceId.Components.RegistryValueDeviceIdComponent.Name">
+            <summary>
+            Gets the name of the component.
+            </summary>
+        </member>
+        <member name="F:DeviceId.Components.RegistryValueDeviceIdComponent._key">
+            <summary>
+            The path of the registry key to look at.
+            </summary>
+        </member>
+        <member name="F:DeviceId.Components.RegistryValueDeviceIdComponent._valueName">
+            <summary>
+            The name of the registry value.
+            </summary>
+        </member>
+        <member name="M:DeviceId.Components.RegistryValueDeviceIdComponent.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DeviceId.Components.FileTokenDeviceIdComponent"/> class.
+            </summary>
+            <param name="name">The name of the component.</param>
+            <param name="key">The full path of the registry key.</param>
+            <param name="valueName">The name of the registry value.</param>
+        </member>
+        <member name="M:DeviceId.Components.RegistryValueDeviceIdComponent.GetValue">
+            <summary>
+            Gets the component value.
+            </summary>
+            <returns>The component value.</returns>
+        </member>
+        <member name="T:DeviceId.Components.SystemDriveSerialNumberDeviceIdComponent">
+            <summary>
+            An implementation of <see cref="T:DeviceId.IDeviceIdComponent"/> that uses the system drive's serial number.
+            </summary>
+        </member>
+        <member name="P:DeviceId.Components.SystemDriveSerialNumberDeviceIdComponent.Name">
+            <summary>
+            Gets the name of the component.
+            </summary>
+        </member>
+        <member name="M:DeviceId.Components.SystemDriveSerialNumberDeviceIdComponent.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:DeviceId.Components.SystemDriveSerialNumberDeviceIdComponent"/> class.
+            </summary>
+        </member>
+        <member name="M:DeviceId.Components.SystemDriveSerialNumberDeviceIdComponent.GetValue">
+            <summary>
+            Gets the component value.
+            </summary>
+            <returns>The component value.</returns>
+        </member>
+        <member name="T:DeviceId.Components.UnsupportedDeviceIdComponent">
+            <summary>
+            An implementation of <see cref="T:DeviceId.IDeviceIdComponent"/> that returns a constant string to indicate this type of component is not supported.
+            </summary>
+        </member>
+        <member name="P:DeviceId.Components.UnsupportedDeviceIdComponent.Name">
+            <summary>
+            Gets the name of the component.
+            </summary>
+        </member>
+        <member name="M:DeviceId.Components.UnsupportedDeviceIdComponent.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DeviceId.Components.UnsupportedDeviceIdComponent"/> class.
+            </summary>
+            <param name="name">The name of the component.</param>
+        </member>
+        <member name="M:DeviceId.Components.UnsupportedDeviceIdComponent.GetValue">
+            <summary>
+            Gets the component value.
+            </summary>
+            <returns>The component value.</returns>
+        </member>
+        <member name="T:DeviceId.Components.WmiDeviceIdComponent">
+            <summary>
+            An implementation of <see cref="T:DeviceId.IDeviceIdComponent"/> that retrieves data from a WMI class.
+            </summary>
+        </member>
+        <member name="P:DeviceId.Components.WmiDeviceIdComponent.Name">
+            <summary>
+            Gets the name of the component.
+            </summary>
+        </member>
+        <member name="F:DeviceId.Components.WmiDeviceIdComponent._wmiClass">
+            <summary>
+            The WMI class name.
+            </summary>
+        </member>
+        <member name="F:DeviceId.Components.WmiDeviceIdComponent._wmiProperty">
+            <summary>
+            The WMI property name.
+            </summary>
+        </member>
+        <member name="M:DeviceId.Components.WmiDeviceIdComponent.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DeviceId.Components.WmiDeviceIdComponent"/> class.
+            </summary>
+            <param name="name">The name of the component.</param>
+            <param name="wmiClass">The WMI class name.</param>
+            <param name="wmiProperty">The WMI property name.</param>
+        </member>
+        <member name="M:DeviceId.Components.WmiDeviceIdComponent.GetValue">
+            <summary>
+            Gets the component value.
+            </summary>
+            <returns>The component value.</returns>
+        </member>
+        <member name="T:DeviceId.DeviceIdBuilder">
+            <summary>
+            Provides a fluent interface for constructing unique device identifiers.
+            </summary>
+        </member>
+        <member name="P:DeviceId.DeviceIdBuilder.Formatter">
+            <summary>
+            Gets or sets the formatter to use.
+            </summary>
+        </member>
+        <member name="P:DeviceId.DeviceIdBuilder.Components">
+            <summary>
+            A set containing the components that will make up the device identifier.
+            </summary>
+        </member>
+        <member name="M:DeviceId.DeviceIdBuilder.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:DeviceId.DeviceIdBuilder"/> class.
+            </summary>
+        </member>
+        <member name="M:DeviceId.DeviceIdBuilder.ToString">
+            <summary>
+            Returns a string representation of the device identifier.
+            </summary>
+            <returns>A string representation of the device identifier.</returns>
+        </member>
+        <member name="T:DeviceId.DeviceIdBuilderExtensions">
+            <summary>
+            Extension methods for <see cref="T:DeviceId.DeviceIdBuilder"/>.
+            </summary>
+        </member>
+        <member name="M:DeviceId.DeviceIdBuilderExtensions.UseFormatter(DeviceId.DeviceIdBuilder,DeviceId.IDeviceIdFormatter)">
+            <summary>
+            Use the specified formatter.
+            </summary>
+            <param name="builder">The <see cref="T:DeviceId.DeviceIdBuilder"/> to use the formatter.</param>
+            <param name="formatter">The <see cref="T:DeviceId.IDeviceIdFormatter"/> to use.</param>
+            <returns>The <see cref="T:DeviceId.DeviceIdBuilder"/> instance.</returns>
+        </member>
+        <member name="M:DeviceId.DeviceIdBuilderExtensions.AddComponent(DeviceId.DeviceIdBuilder,DeviceId.IDeviceIdComponent)">
+            <summary>
+            Adds the specified component to the device identifier.
+            </summary>
+            <param name="builder">The <see cref="T:DeviceId.DeviceIdBuilder"/> to add the component to.</param>
+            <param name="component">The <see cref="T:DeviceId.IDeviceIdComponent"/> to add.</param>
+            <returns>The <see cref="T:DeviceId.DeviceIdBuilder"/> instance.</returns>
+        </member>
+        <member name="M:DeviceId.DeviceIdBuilderExtensions.AddUserName(DeviceId.DeviceIdBuilder)">
+            <summary>
+            Adds the current user name to the device identifier.
+            </summary>
+            <param name="builder">The <see cref="T:DeviceId.DeviceIdBuilder"/> to add the component to.</param>
+            <returns>The <see cref="T:DeviceId.DeviceIdBuilder"/> instance.</returns>
+        </member>
+        <member name="M:DeviceId.DeviceIdBuilderExtensions.AddMachineName(DeviceId.DeviceIdBuilder)">
+            <summary>
+            Adds the machine name to the device identifier.
+            </summary>
+            <param name="builder">The <see cref="T:DeviceId.DeviceIdBuilder"/> to add the component to.</param>
+            <returns>The <see cref="T:DeviceId.DeviceIdBuilder"/> instance.</returns>
+        </member>
+        <member name="M:DeviceId.DeviceIdBuilderExtensions.AddOSVersion(DeviceId.DeviceIdBuilder)">
+            <summary>
+            Adds the operating system version to the device identifier.
+            </summary>
+            <param name="builder">The <see cref="T:DeviceId.DeviceIdBuilder"/> to add the component to.</param>
+            <returns>The <see cref="T:DeviceId.DeviceIdBuilder"/> instance.</returns>
+        </member>
+        <member name="M:DeviceId.DeviceIdBuilderExtensions.AddMacAddress(DeviceId.DeviceIdBuilder,System.Boolean,System.Boolean)">
+            <summary>
+            Adds the MAC address to the device identifier, optionally excluding non-physical adapters and/or wireless adapters.
+            </summary>
+            <param name="builder">The <see cref="T:DeviceId.DeviceIdBuilder"/> to add the component to.</param>
+            <param name="excludeNonPhysical">A value indicating whether non-physical adapters should be excluded.</param>
+            <param name="excludeWireless">A value indicating whether wireless adapters should be excluded.</param>
+            <returns>The <see cref="T:DeviceId.DeviceIdBuilder"/> instance.</returns>
+        </member>
+        <member name="M:DeviceId.DeviceIdBuilderExtensions.AddProcessorId(DeviceId.DeviceIdBuilder)">
+            <summary>
+            Adds the processor ID to the device identifier.
+            </summary>
+            <param name="builder">The <see cref="T:DeviceId.DeviceIdBuilder"/> to add the component to.</param>
+            <returns>The <see cref="T:DeviceId.DeviceIdBuilder"/> instance.</returns>
+        </member>
+        <member name="M:DeviceId.DeviceIdBuilderExtensions.AddMotherboardSerialNumber(DeviceId.DeviceIdBuilder)">
+            <summary>
+            Adds the motherboard serial number to the device identifier. On Linux, this requires root privilege.
+            </summary>
+            <param name="builder">The <see cref="T:DeviceId.DeviceIdBuilder"/> to add the component to.</param>
+            <returns>The <see cref="T:DeviceId.DeviceIdBuilder"/> instance.</returns>
+        </member>
+        <member name="M:DeviceId.DeviceIdBuilderExtensions.AddSystemDriveSerialNumber(DeviceId.DeviceIdBuilder)">
+            <summary>
+            Adds the system drive's serial number to the device identifier.
+            </summary>
+            <param name="builder">The <see cref="T:DeviceId.DeviceIdBuilder"/> to add the component to.</param>
+            <returns>The <see cref="T:DeviceId.DeviceIdBuilder"/> instance.</returns>
+        </member>
+        <member name="M:DeviceId.DeviceIdBuilderExtensions.AddSystemUUID(DeviceId.DeviceIdBuilder)">
+            <summary>
+            Adds the system UUID to the device identifier. On Linux, this requires root privilege.
+            </summary>
+            <param name="builder">The <see cref="T:DeviceId.DeviceIdBuilder"/> to add the component to.</param>
+            <returns>The <see cref="T:DeviceId.DeviceIdBuilder"/> instance.</returns>
+        </member>
+        <member name="M:DeviceId.DeviceIdBuilderExtensions.AddOSInstallationID(DeviceId.DeviceIdBuilder)">
+            <summary>
+            Adds the identifier tied to the installation of the OS.
+            </summary>
+            <param name="builder">The <see cref="T:DeviceId.DeviceIdBuilder"/> to add the component to.</param>
+            <returns>The <see cref="T:DeviceId.DeviceIdBuilder"/> instance.</returns>
+        </member>
+        <member name="M:DeviceId.DeviceIdBuilderExtensions.AddRegistryValue(DeviceId.DeviceIdBuilder,System.String,System.String,System.String)">
+            <summary>
+            Adds a registry value to the device identifier.
+            </summary>
+            <param name="builder">The <see cref="T:DeviceId.DeviceIdBuilder"/> to add the component to.</param>
+            <param name="name">The name of the component.</param>
+            <param name="key">The full path of the registry key.</param>
+            <param name="valueName">The name of the registry value.</param>
+            <returns>The <see cref="T:DeviceId.DeviceIdBuilder"/> instance.</returns>
+        </member>
+        <member name="M:DeviceId.DeviceIdBuilderExtensions.AddFileToken(DeviceId.DeviceIdBuilder,System.String)">
+            <summary>
+            Adds a file-based token to the device identifier.
+            </summary>
+            <param name="builder">The <see cref="T:DeviceId.DeviceIdBuilder"/> to add the component to.</param>
+            <param name="path">The path of the token.</param>
+            <returns>The <see cref="T:DeviceId.DeviceIdBuilder"/> instance.</returns>
+        </member>
+        <member name="T:DeviceId.Encoders.Base64ByteArrayEncoder">
+            <summary>
+            An implementation of <see cref="T:DeviceId.IByteArrayEncoder"/> that encodes byte arrays as Base64 strings.
+            </summary>
+        </member>
+        <member name="M:DeviceId.Encoders.Base64ByteArrayEncoder.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:DeviceId.Encoders.Base64ByteArrayEncoder"/> class.
+            </summary>
+        </member>
+        <member name="M:DeviceId.Encoders.Base64ByteArrayEncoder.Encode(System.Byte[])">
+            <summary>
+            Encodes the specified byte array as a string.
+            </summary>
+            <param name="bytes">The byte array to encode.</param>
+            <returns>The byte array encoded as a string.</returns>
+        </member>
+        <member name="T:DeviceId.Encoders.Base64UrlByteArrayEncoder">
+            <summary>
+            An implementation of <see cref="T:DeviceId.IByteArrayEncoder"/> that encodes byte arrays as Base64Url strings.
+            </summary>
+        </member>
+        <member name="M:DeviceId.Encoders.Base64UrlByteArrayEncoder.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:DeviceId.Encoders.Base64UrlByteArrayEncoder"/> class.
+            </summary>
+        </member>
+        <member name="M:DeviceId.Encoders.Base64UrlByteArrayEncoder.Encode(System.Byte[])">
+            <summary>
+            Encodes the specified byte array as a string.
+            </summary>
+            <param name="bytes">The byte array to encode.</param>
+            <returns>The byte array encoded as a string.</returns>
+        </member>
+        <member name="T:DeviceId.Encoders.HashDeviceIdComponentEncoder">
+            <summary>
+            An implementation of <see cref="T:DeviceId.IDeviceIdComponentEncoder"/> that encodes components as hashes.
+            </summary>
+        </member>
+        <member name="F:DeviceId.Encoders.HashDeviceIdComponentEncoder._hashAlgorithm">
+            <summary>
+            A function that returns the hash algorithm to use.
+            </summary>
+        </member>
+        <member name="F:DeviceId.Encoders.HashDeviceIdComponentEncoder._byteArrayEncoder">
+            <summary>
+            The <see cref="T:DeviceId.IByteArrayEncoder"/> to use to encode the resulting hash.
+            </summary>
+        </member>
+        <member name="M:DeviceId.Encoders.HashDeviceIdComponentEncoder.#ctor(System.Func{System.Security.Cryptography.HashAlgorithm},DeviceId.IByteArrayEncoder)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DeviceId.Encoders.HashDeviceIdComponentEncoder"/> class.
+            </summary>
+            <param name="hashAlgorithm">A function that returns the hash algorithm to use.</param>
+            <param name="byteArrayEncoder">The <see cref="T:DeviceId.IByteArrayEncoder"/> to use to encode the resulting hash.</param>
+        </member>
+        <member name="M:DeviceId.Encoders.HashDeviceIdComponentEncoder.Encode(DeviceId.IDeviceIdComponent)">
+            <summary>
+            Encodes the specified <see cref="T:DeviceId.IDeviceIdComponent"/> as a string.
+            </summary>
+            <param name="component">The component to encode.</param>
+            <returns>The component encoded as a string.</returns>
+        </member>
+        <member name="T:DeviceId.Encoders.HexByteArrayEncoder">
+            <summary>
+            An implementation of <see cref="T:DeviceId.IByteArrayEncoder"/> that encodes byte arrays as hex strings.
+            </summary>
+        </member>
+        <member name="M:DeviceId.Encoders.HexByteArrayEncoder.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:DeviceId.Encoders.HexByteArrayEncoder"/> class.
+            </summary>
+        </member>
+        <member name="M:DeviceId.Encoders.HexByteArrayEncoder.Encode(System.Byte[])">
+            <summary>
+            Encodes the specified byte array as a string.
+            </summary>
+            <param name="bytes">The byte array to encode.</param>
+            <returns>The byte array encoded as a string.</returns>
+        </member>
+        <member name="T:DeviceId.Encoders.PlainTextDeviceIdComponentEncoder">
+            <summary>
+            An implementation of <see cref="T:DeviceId.IDeviceIdComponentEncoder"/> that encodes components as plain text.
+            </summary>
+        </member>
+        <member name="M:DeviceId.Encoders.PlainTextDeviceIdComponentEncoder.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:DeviceId.Encoders.PlainTextDeviceIdComponentEncoder"/> class.
+            </summary>
+        </member>
+        <member name="M:DeviceId.Encoders.PlainTextDeviceIdComponentEncoder.Encode(DeviceId.IDeviceIdComponent)">
+            <summary>
+            Encodes the specified <see cref="T:DeviceId.IDeviceIdComponent"/> as a string.
+            </summary>
+            <param name="component">The component to encode.</param>
+            <returns>The component encoded as a string.</returns>
+        </member>
+        <member name="T:DeviceId.Formatters.HashDeviceIdFormatter">
+            <summary>
+            An implementation of <see cref="T:DeviceId.IDeviceIdFormatter"/> that combines the components into a hash.
+            </summary>
+        </member>
+        <member name="F:DeviceId.Formatters.HashDeviceIdFormatter._hashAlgorithm">
+            <summary>
+            A function that returns the hash algorithm to use.
+            </summary>
+        </member>
+        <member name="F:DeviceId.Formatters.HashDeviceIdFormatter._byteArrayEncoder">
+            <summary>
+            The <see cref="T:DeviceId.IByteArrayEncoder"/> to use to encode the resulting hash.
+            </summary>
+        </member>
+        <member name="M:DeviceId.Formatters.HashDeviceIdFormatter.#ctor(System.Func{System.Security.Cryptography.HashAlgorithm},DeviceId.IByteArrayEncoder)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DeviceId.Formatters.HashDeviceIdFormatter"/> class.
+            </summary>
+            <param name="hashAlgorithm">A function that returns the hash algorithm to use.</param>
+            <param name="byteArrayEncoder">The <see cref="T:DeviceId.IByteArrayEncoder"/> to use to encode the resulting hash.</param>
+        </member>
+        <member name="M:DeviceId.Formatters.HashDeviceIdFormatter.GetDeviceId(System.Collections.Generic.IEnumerable{DeviceId.IDeviceIdComponent})">
+            <summary>
+            Returns the device identifier string created by combining the specified <see cref="T:DeviceId.IDeviceIdComponent"/> instances.
+            </summary>
+            <param name="components">A sequence containing the <see cref="T:DeviceId.IDeviceIdComponent"/> instances to combine into the device identifier string.</param>
+            <returns>The device identifier string.</returns>
+        </member>
+        <member name="T:DeviceId.Formatters.StringDeviceIdFormatter">
+            <summary>
+            An implementation of <see cref="T:DeviceId.IDeviceIdFormatter"/> that combines the components into a concatenated string.
+            </summary>
+        </member>
+        <member name="F:DeviceId.Formatters.StringDeviceIdFormatter._encoder">
+            <summary>
+            The <see cref="T:DeviceId.IDeviceIdComponentEncoder"/> instance to use to encode individual components.
+            </summary>
+        </member>
+        <member name="M:DeviceId.Formatters.StringDeviceIdFormatter.#ctor(DeviceId.IDeviceIdComponentEncoder)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DeviceId.Formatters.XmlDeviceIdFormatter"/> class.
+            </summary>
+            <param name="encoder">The <see cref="T:DeviceId.IDeviceIdComponentEncoder"/> instance to use to encode individual components.</param>
+        </member>
+        <member name="M:DeviceId.Formatters.StringDeviceIdFormatter.GetDeviceId(System.Collections.Generic.IEnumerable{DeviceId.IDeviceIdComponent})">
+            <summary>
+            Returns the device identifier string created by combining the specified <see cref="T:DeviceId.IDeviceIdComponent"/> instances.
+            </summary>
+            <param name="components">A sequence containing the <see cref="T:DeviceId.IDeviceIdComponent"/> instances to combine into the device identifier string.</param>
+            <returns>The device identifier string.</returns>
+        </member>
+        <member name="T:DeviceId.Formatters.XmlDeviceIdFormatter">
+            <summary>
+            An implementation of <see cref="T:DeviceId.IDeviceIdFormatter"/> that combines the components into an XML string.
+            </summary>
+        </member>
+        <member name="F:DeviceId.Formatters.XmlDeviceIdFormatter._encoder">
+            <summary>
+            The <see cref="T:DeviceId.IDeviceIdComponentEncoder"/> instance to use to encode individual components.
+            </summary>
+        </member>
+        <member name="M:DeviceId.Formatters.XmlDeviceIdFormatter.#ctor(DeviceId.IDeviceIdComponentEncoder)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DeviceId.Formatters.XmlDeviceIdFormatter"/> class.
+            </summary>
+            <param name="encoder">The <see cref="T:DeviceId.IDeviceIdComponentEncoder"/> instance to use to encode individual components.</param>
+        </member>
+        <member name="M:DeviceId.Formatters.XmlDeviceIdFormatter.GetDeviceId(System.Collections.Generic.IEnumerable{DeviceId.IDeviceIdComponent})">
+            <summary>
+            Returns the device identifier string created by combining the specified <see cref="T:DeviceId.IDeviceIdComponent"/> instances.
+            </summary>
+            <param name="components">A sequence containing the <see cref="T:DeviceId.IDeviceIdComponent"/> instances to combine into the device identifier string.</param>
+            <returns>The device identifier string.</returns>
+        </member>
+        <member name="M:DeviceId.Formatters.XmlDeviceIdFormatter.GetElement(System.Collections.Generic.IEnumerable{DeviceId.IDeviceIdComponent})">
+            <summary>
+            Returns an <see cref="T:System.Xml.Linq.XElement"/> representing the specified collection of <see cref="T:DeviceId.IDeviceIdComponent"/> instances.
+            </summary>
+            <param name="components">The sequence of <see cref="T:DeviceId.IDeviceIdComponent"/> instances to represent.</param>
+            <returns>An <see cref="T:System.Xml.Linq.XElement"/> representing the specified collection of <see cref="T:DeviceId.IDeviceIdComponent"/> instances</returns>
+        </member>
+        <member name="M:DeviceId.Formatters.XmlDeviceIdFormatter.GetElement(DeviceId.IDeviceIdComponent)">
+            <summary>
+            Returns an <see cref="T:System.Xml.Linq.XElement"/> representing the specified <see cref="T:DeviceId.IDeviceIdComponent"/> instance.
+            </summary>
+            <param name="component">The <see cref="T:DeviceId.IDeviceIdComponent"/> to represent.</param>
+            <returns>An <see cref="T:System.Xml.Linq.XElement"/> representing the specified <see cref="T:DeviceId.IDeviceIdComponent"/> instance.</returns>
+        </member>
+        <member name="T:DeviceId.IByteArrayEncoder">
+            <summary>
+            Provides functionality to encode a byte array as a string.
+            </summary>
+        </member>
+        <member name="M:DeviceId.IByteArrayEncoder.Encode(System.Byte[])">
+            <summary>
+            Encodes the specified byte array as a string.
+            </summary>
+            <param name="bytes">The byte array to encode.</param>
+            <returns>The byte array encoded as a string.</returns>
+        </member>
+        <member name="T:DeviceId.IDeviceIdComponent">
+            <summary>
+            Represents a component that forms part of a device identifier.
+            </summary>
+        </member>
+        <member name="P:DeviceId.IDeviceIdComponent.Name">
+            <summary>
+            Gets the name of the component.
+            </summary>
+        </member>
+        <member name="M:DeviceId.IDeviceIdComponent.GetValue">
+            <summary>
+            Gets the component value.
+            </summary>
+            <returns>The component value.</returns>
+        </member>
+        <member name="T:DeviceId.IDeviceIdComponentEncoder">
+            <summary>
+            Provides functionality to encode a <see cref="T:DeviceId.IDeviceIdComponent"/> as a string.
+            </summary>
+        </member>
+        <member name="M:DeviceId.IDeviceIdComponentEncoder.Encode(DeviceId.IDeviceIdComponent)">
+            <summary>
+            Encodes the specified <see cref="T:DeviceId.IDeviceIdComponent"/> as a string.
+            </summary>
+            <param name="component">The component to encode.</param>
+            <returns>The component encoded as a string.</returns>
+        </member>
+        <member name="T:DeviceId.IDeviceIdFormatter">
+            <summary>
+            Provides a method to combine a number of <see cref="T:DeviceId.IDeviceIdComponent"/> instances
+            into a single device identifier string.
+            </summary>
+        </member>
+        <member name="M:DeviceId.IDeviceIdFormatter.GetDeviceId(System.Collections.Generic.IEnumerable{DeviceId.IDeviceIdComponent})">
+            <summary>
+            Returns the device identifier string created by combining the specified <see cref="T:DeviceId.IDeviceIdComponent"/> instances.
+            </summary>
+            <param name="components">A sequence containing the <see cref="T:DeviceId.IDeviceIdComponent"/> instances to combine into the device identifier string.</param>
+            <returns>The device identifier string.</returns>
+        </member>
+        <member name="T:DeviceId.Internal.DeviceIdComponentEqualityComparer">
+            <summary>
+            Defines methods to support the comparison of <see cref="T:DeviceId.IDeviceIdComponent"/> instances for equality.
+            </summary>
+        </member>
+        <member name="M:DeviceId.Internal.DeviceIdComponentEqualityComparer.Equals(DeviceId.IDeviceIdComponent,DeviceId.IDeviceIdComponent)">
+            <summary>
+            Determines whether the specified objects are equal.
+            </summary>
+            <param name="x">The first object to compare.</param>
+            <param name="y">The second object to compare.</param>
+            <returns>true if the specified objects are equal; otherwise, false.</returns>
+        </member>
+        <member name="M:DeviceId.Internal.DeviceIdComponentEqualityComparer.GetHashCode(DeviceId.IDeviceIdComponent)">
+            <summary>
+            Returns a hash code for the specified object.
+            </summary>
+            <param name="obj">The object for which a hash code is to be returned.</param>
+            <returns>A hash code for the specified object.</returns>
+        </member>
+        <member name="T:DeviceId.OS">
+            <summary>
+            Provides helper methods relating to the OS.
+            </summary>
+        </member>
+        <member name="P:DeviceId.OS.IsWindows">
+            <summary>
+            Gets a value indicating whether this is a Windows OS.
+            </summary>
+        </member>
+        <member name="P:DeviceId.OS.IsLinux">
+            <summary>
+            Gets a value indicating whether this is a Linux OS.
+            </summary>
+        </member>
+        <member name="P:DeviceId.OS.IsOSX">
+            <summary>
+            Gets a value indicating whether this is OS X.
+            </summary>
+        </member>
+        <member name="P:DeviceId.OS.Version">
+            <summary>
+            Gets the current OS version.
+            </summary>
+        </member>
+    </members>
+</doc>
