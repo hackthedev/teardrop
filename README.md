@@ -4,22 +4,16 @@ Welcome to the teardrop Ransomware Project. This project was created for educati
 <br>
 
 ## Features
-- Send Decryption Key, Unique DeviceID to MySQL Server
-- Encrypt all Files in Directories and Sub-Directories
-  - <i>(Is also encrypting other connected hard drives)</i>
-  - <i>Added Multi-Threading! Very Speedy Now!</i>
-
-<br>
-   
-- Debug "Console"
-- Generates and Saves Encryption Key in Application
-- Runs as Administrator
-  - <i>(Can be changed in app.manifest)</i>
-
-<br>
-    
-- Encrypt Certain folders first
-  - <i>Currently encrypting desktop folder first</i>
+- Send Machine Data to SQL Server
+- Encrypt connected devices ( [#7](https://github.com/hackthedev/teardrop/issues/7) )
+- Log errors to file
+- Disable/Enable Taskmanager
+- Hide from Taskbar
+- Overlap other applications
+- Multi-Threading
+- Extension Whitelist
+- Simulate Mouse Click
+- Generate unique Device Id
 
 <br>
 
