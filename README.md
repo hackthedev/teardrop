@@ -14,6 +14,8 @@ Welcome to the teardrop Ransomware Project. This project was created for educati
 - Extension Whitelist
 - Simulate Mouse Click
 - Generate unique Device Id
+- Make Application Unkillable
+- Register Application in StartUp
 
 <br>
 
