@@ -36,7 +36,16 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="message" Type="System.String" Scope="User">
-      <Value Profile="(Default)">&lt;h1&gt;Im a test!&lt;/h1&gt;&lt;p&gt;hackthedev/teardrop&lt;/p&gt;</Value>
+      <Value Profile="(Default)">&lt;h1&gt;Github:&lt;/h1&gt;&lt;p&gt;hackthedev/teardrop&lt;/p&gt;</Value>
+    </Setting>
+    <Setting Name="unkillable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="application_name" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="theme" Type="System.String" Scope="User">
+      <Value Profile="(Default)">flash</Value>
     </Setting>
   </Settings>
 </SettingsFile>

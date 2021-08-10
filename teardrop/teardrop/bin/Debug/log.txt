@@ -111,3 +111,72 @@
 [16.07.2021 20:30:41] Der Zugriff auf den Pfad "E:\System Volume Information" wurde verweigert.
 [16.07.2021 20:30:41] File 'message.html' created on drive Z:\\message.html
 [16.07.2021 20:30:41] Found drive Z:\
+[10.08.2021 23:04:10] File 'message.html' created on drive C:\\message.html
+[10.08.2021 23:04:10] Found drive C:\
+[10.08.2021 23:04:39] File 'message.html' created on drive C:\\message.html
+[10.08.2021 23:04:39] Found drive C:\
+[10.08.2021 23:04:58] Der Zugriff auf den Pfad "C:\ProgramData\Microsoft\Windows\SystemData" wurde verweigert.
+[10.08.2021 23:04:58] Der Zugriff auf den Pfad "C:\ProgramData\Packages\Microsoft.SkypeApp_kzf8qxf38zg5c\S-1-5-21-1901380051-838411455-2468024468-1001\SystemAppData\Helium" wurde verweigert.
+[10.08.2021 23:04:58] Der Zugriff auf den Pfad "C:\ProgramData\Packages\Microsoft.XboxGamingOverlay_8wekyb3d8bbwe\S-1-5-21-1901380051-838411455-2468024468-1001\SystemAppData\Helium" wurde verweigert.
+[10.08.2021 23:04:58] Der Zugriff auf den Pfad "C:\System Volume Information" wurde verweigert.
+[10.08.2021 23:05:17] Der Zugriff auf den Pfad "C:\Windows\ServiceProfiles\LocalService\AppData\Local\Microsoft\Ngc" wurde verweigert.
+[10.08.2021 23:05:24] Der Zugriff auf den Pfad "C:\Windows\System32\LogFiles\WMI\RtBackup" wurde verweigert.
+[10.08.2021 23:05:44] Der Zugriff auf den Pfad "D:\message.html" wurde verweigert.
+[10.08.2021 23:05:44] Found drive D:\
+[10.08.2021 23:05:44] File 'message.html' created on drive E:\\message.html
+[10.08.2021 23:05:44] Found drive E:\
+[10.08.2021 23:05:44] Der Zugriff auf den Pfad "E:\System Volume Information" wurde verweigert.
+[10.08.2021 23:05:44] File 'message.html' created on drive Z:\\message.html
+[10.08.2021 23:05:44] Found drive Z:\
+[10.08.2021 23:08:14] File 'message.html' created on drive C:\\message.html
+[10.08.2021 23:08:14] Found drive C:\
+[10.08.2021 23:08:33] Der Zugriff auf den Pfad "C:\ProgramData\Microsoft\Windows\SystemData" wurde verweigert.
+[10.08.2021 23:08:33] Der Zugriff auf den Pfad "C:\ProgramData\Packages\Microsoft.SkypeApp_kzf8qxf38zg5c\S-1-5-21-1901380051-838411455-2468024468-1001\SystemAppData\Helium" wurde verweigert.
+[10.08.2021 23:08:33] Der Zugriff auf den Pfad "C:\ProgramData\Packages\Microsoft.XboxGamingOverlay_8wekyb3d8bbwe\S-1-5-21-1901380051-838411455-2468024468-1001\SystemAppData\Helium" wurde verweigert.
+[10.08.2021 23:08:33] Der Zugriff auf den Pfad "C:\System Volume Information" wurde verweigert.
+[10.08.2021 23:08:53] Der Zugriff auf den Pfad "C:\Windows\ServiceProfiles\LocalService\AppData\Local\Microsoft\Ngc" wurde verweigert.
+[10.08.2021 23:08:59] Der Zugriff auf den Pfad "C:\Windows\System32\LogFiles\WMI\RtBackup" wurde verweigert.
+[10.08.2021 23:09:17] Der Zugriff auf den Pfad "D:\message.html" wurde verweigert.
+[10.08.2021 23:09:17] Found drive D:\
+[10.08.2021 23:09:17] File 'message.html' created on drive E:\\message.html
+[10.08.2021 23:09:17] Found drive E:\
+[10.08.2021 23:09:17] Der Zugriff auf den Pfad "E:\System Volume Information" wurde verweigert.
+[10.08.2021 23:09:17] File 'message.html' created on drive Z:\\message.html
+[10.08.2021 23:09:17] Found drive Z:\
+[10.08.2021 23:11:00] File 'message.html' created on drive C:\\message.html
+[10.08.2021 23:11:00] Found drive C:\
+[10.08.2021 23:11:21] Der Zugriff auf den Pfad "C:\ProgramData\Microsoft\Windows\SystemData" wurde verweigert.
+[10.08.2021 23:11:21] Der Zugriff auf den Pfad "C:\ProgramData\Packages\Microsoft.SkypeApp_kzf8qxf38zg5c\S-1-5-21-1901380051-838411455-2468024468-1001\SystemAppData\Helium" wurde verweigert.
+[10.08.2021 23:11:21] Der Zugriff auf den Pfad "C:\ProgramData\Packages\Microsoft.XboxGamingOverlay_8wekyb3d8bbwe\S-1-5-21-1901380051-838411455-2468024468-1001\SystemAppData\Helium" wurde verweigert.
+[10.08.2021 23:11:21] Der Zugriff auf den Pfad "C:\System Volume Information" wurde verweigert.
+[10.08.2021 23:11:42] Der Zugriff auf den Pfad "C:\Windows\ServiceProfiles\LocalService\AppData\Local\Microsoft\Ngc" wurde verweigert.
+[10.08.2021 23:11:57] File 'message.html' created on drive C:\\message.html
+[10.08.2021 23:11:57] Found drive C:\
+[10.08.2021 23:12:17] Der Zugriff auf den Pfad "C:\ProgramData\Microsoft\Windows\SystemData" wurde verweigert.
+[10.08.2021 23:12:17] Der Zugriff auf den Pfad "C:\ProgramData\Packages\Microsoft.SkypeApp_kzf8qxf38zg5c\S-1-5-21-1901380051-838411455-2468024468-1001\SystemAppData\Helium" wurde verweigert.
+[10.08.2021 23:12:17] Der Zugriff auf den Pfad "C:\ProgramData\Packages\Microsoft.XboxGamingOverlay_8wekyb3d8bbwe\S-1-5-21-1901380051-838411455-2468024468-1001\SystemAppData\Helium" wurde verweigert.
+[10.08.2021 23:12:17] Der Zugriff auf den Pfad "C:\System Volume Information" wurde verweigert.
+[10.08.2021 23:12:36] Der Zugriff auf den Pfad "C:\Windows\ServiceProfiles\LocalService\AppData\Local\Microsoft\Ngc" wurde verweigert.
+[10.08.2021 23:12:42] Der Zugriff auf den Pfad "C:\Windows\System32\LogFiles\WMI\RtBackup" wurde verweigert.
+[10.08.2021 23:13:00] Der Zugriff auf den Pfad "D:\message.html" wurde verweigert.
+[10.08.2021 23:13:00] Found drive D:\
+[10.08.2021 23:13:00] File 'message.html' created on drive E:\\message.html
+[10.08.2021 23:13:00] Found drive E:\
+[10.08.2021 23:13:00] Der Zugriff auf den Pfad "E:\System Volume Information" wurde verweigert.
+[10.08.2021 23:13:00] File 'message.html' created on drive Z:\\message.html
+[10.08.2021 23:13:00] Found drive Z:\
+[10.08.2021 23:14:53] File 'message.html' created on drive C:\\message.html
+[10.08.2021 23:14:53] Found drive C:\
+[10.08.2021 23:15:13] Der Zugriff auf den Pfad "C:\ProgramData\Microsoft\Windows\SystemData" wurde verweigert.
+[10.08.2021 23:15:13] Der Zugriff auf den Pfad "C:\ProgramData\Packages\Microsoft.SkypeApp_kzf8qxf38zg5c\S-1-5-21-1901380051-838411455-2468024468-1001\SystemAppData\Helium" wurde verweigert.
+[10.08.2021 23:15:13] Der Zugriff auf den Pfad "C:\ProgramData\Packages\Microsoft.XboxGamingOverlay_8wekyb3d8bbwe\S-1-5-21-1901380051-838411455-2468024468-1001\SystemAppData\Helium" wurde verweigert.
+[10.08.2021 23:15:13] Der Zugriff auf den Pfad "C:\System Volume Information" wurde verweigert.
+[10.08.2021 23:15:32] Der Zugriff auf den Pfad "C:\Windows\ServiceProfiles\LocalService\AppData\Local\Microsoft\Ngc" wurde verweigert.
+[10.08.2021 23:15:39] Der Zugriff auf den Pfad "C:\Windows\System32\LogFiles\WMI\RtBackup" wurde verweigert.
+[10.08.2021 23:15:57] Der Zugriff auf den Pfad "D:\message.html" wurde verweigert.
+[10.08.2021 23:15:57] Found drive D:\
+[10.08.2021 23:15:57] File 'message.html' created on drive E:\\message.html
+[10.08.2021 23:15:57] Found drive E:\
+[10.08.2021 23:15:57] Der Zugriff auf den Pfad "E:\System Volume Information" wurde verweigert.
+[10.08.2021 23:15:57] File 'message.html' created on drive Z:\\message.html
+[10.08.2021 23:15:57] Found drive Z:\

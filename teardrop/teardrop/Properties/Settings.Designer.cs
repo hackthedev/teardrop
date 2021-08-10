@@ -157,13 +157,49 @@ namespace teardrop.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("<h1>Im a test!</h1><p>hackthedev/teardrop</p>")]
+        [global::System.Configuration.DefaultSettingValueAttribute("<h1>Github:</h1><p>hackthedev/teardrop</p>")]
         public string message {
             get {
                 return ((string)(this["message"]));
             }
             set {
                 this["message"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool unkillable {
+            get {
+                return ((bool)(this["unkillable"]));
+            }
+            set {
+                this["unkillable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string application_name {
+            get {
+                return ((string)(this["application_name"]));
+            }
+            set {
+                this["application_name"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("flash")]
+        public string theme {
+            get {
+                return ((string)(this["theme"]));
+            }
+            set {
+                this["theme"] = value;
             }
         }
     }
