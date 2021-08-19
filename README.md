@@ -16,6 +16,8 @@ Welcome to the teardrop Ransomware Project. This project was created for educati
 - Generate unique Device Id
 - Make Application Unkillable
 - Register Application in StartUp
+- Theme "System"
+- Encryption Fuse 
 
 <br>
 
