@@ -1,6 +1,8 @@
 # teardrop - Ransomware
 Welcome to the teardrop Ransomware Project. This project was created for educational purposes <b>only</b>. If you want to harm someone, it is your fault if something happens. I do not take any responsibility for damage that might've been caused by one of your actions. In order to use my finished code read the terms and conditions in the [LICENSE](LICENSE) file
 
+[Discuss on Discord](https://discord.com/invite/KBEZtp2Jtd)
+
 <br>
 
 ## Features
