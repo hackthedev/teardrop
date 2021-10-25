@@ -75,6 +75,7 @@ namespace teardrop
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(899, 31);
             this.textBox3.TabIndex = 2;
+            this.textBox3.Text = "Enter Decryption Key here";
             // 
             // button1
             // 
@@ -86,6 +87,7 @@ namespace teardrop
             this.button1.TabIndex = 1;
             this.button1.Text = "Decrypt";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // textBox1
             // 
