@@ -35,6 +35,8 @@ I've planned to keep updating this project and fixing bugs. If you've found any 
 | ![Dev Continued](https://img.shields.io/badge/Development-Continued-informational) | Im ready to work on the project and try to improve it as good as I can. |
 | ![Dev Canceled](https://img.shields.io/badge/Development-Canceled-lightgrey) | The project was canceled for a unknown reason which will be given at the right timing |
 
+<br>
+
 ## Screenshots
 <img title="Cant show file name because it's bad language" src="https://shy-devils.life-is-pa.in/6bO0ev.jpeg" />
 <img title="Current Style - App in Action" src="https://shy-devils.life-is-pa.in/YnaurD.gif" />
