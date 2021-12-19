@@ -23,6 +23,11 @@ Welcome to the teardrop Ransomware Project. This project was created for educati
 
 <br>
 
+## Help 
+If you're stuck with doing something on this project you can become a patron and get live help. This offer is limited to 4 people at the time. Issues will still be resolved as good as possible like before.
+
+<br>
+
 ## Updates?
 I've planned to keep updating this project and fixing bugs. If you've found any bug, you can [create a new issue](https://github.com/hackthedev/teardrop/issues). There might be updates where I only cleaned up the Code. It is planned to also implement new Features. If you want to stay up-to-date, follow me on Github.
 
