@@ -12,6 +12,7 @@ namespace teardrop
 {
     class Crypto
     {
+        // This is used to generate a random string. Can be used to generate the encryption key
         private static Random random = new Random();
         public static string GetRandomString(int length)
         {
@@ -20,9 +21,11 @@ namespace teardrop
               .Select(s => s[random.Next(s.Length)]).ToArray());
         }
 
+        // This code can be used to delete the encryption key from memory!
         [DllImport("KERNEL32.DLL", EntryPoint = "RtlZeroMemory")]
         public static extern bool ZeroMemory(IntPtr Destination, int Length);
 
+        // This will generate a salt for the encryption process
         public static byte[] GenerateRandomSalt()
         {
             byte[] data = new byte[32];
@@ -38,6 +41,7 @@ namespace teardrop
             return data;
         }
 
+        // This will encrypt a file with a random sault.
         public static void FileEncrypt(string inputFile, string password)
         {
             byte[] salt = GenerateRandomSalt();
@@ -87,6 +91,7 @@ namespace teardrop
             }
         }
 
+        // This will decrypt a file
         public static void FileDecrypt(string inputFile, string outputFile, string password)
         {
             byte[] passwordBytes = System.Text.Encoding.UTF8.GetBytes(password);
