@@ -27,7 +27,6 @@ D:\vs\teardrop\teardrop\teardrop\obj\Debug\teardrop.Form1.resources
 D:\vs\teardrop\teardrop\teardrop\obj\Debug\teardrop.Properties.Resources.resources
 D:\vs\teardrop\teardrop\teardrop\obj\Debug\teardrop.csproj.GenerateResource.cache
 D:\vs\teardrop\teardrop\teardrop\obj\Debug\teardrop.csproj.CoreCompileInputs.cache
-D:\vs\teardrop\teardrop\teardrop\obj\Debug\teardrop.csproj.CopyComplete
 D:\vs\teardrop\teardrop\teardrop\obj\Debug\teardrop.exe
 D:\vs\teardrop\teardrop\teardrop\obj\Debug\teardrop.pdb
 D:\vs\teardrop\teardrop\teardrop\bin\Debug\DeviceId.dll

