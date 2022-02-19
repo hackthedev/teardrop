@@ -24,7 +24,7 @@ Welcome to the teardrop Ransomware Project. This project was created for educati
 <br>
 
 ## Help 
-If you're stuck with doing something on this project you can become a patron and get live help. This offer is limited to 4 people at the time. Issues will still be resolved as good as possible like before.
+If you're stuck with doing something on this project you can hit me up on Discord -> "Shy Devil#0001". Issues will still be resolved as good as possible.
 
 <br>
 
