@@ -29,7 +29,7 @@ If you're stuck with doing something on this project you can hit me up on Discor
 <br>
 
 ## YouTube Videos
-I've seen some people making videos about my ransomware project. This is fine and all but they dont link to the correct repo, isntead they link forks that dont get updated. If you do make a video make sure to link hackthedev/teardrop, as this is the original and up-to-date version. You can also link your own fork of course. 
+I've seen some people making videos about my ransomware project. This is fine and all but they dont link to the correct repo, isntead they link forks that dont get updated. If you do make a video make sure to link hackthedev/teardrop, as this is the original and up-to-date version. You can also link your own fork of course.
 
 <br>
 
