@@ -24,7 +24,12 @@ Welcome to the teardrop Ransomware Project. This project was created for educati
 <br>
 
 ## Help 
-If you're stuck with doing something on this project you can become a patron and get live help. This offer is limited to 4 people at the time. Issues will still be resolved as good as possible like before.
+If you're stuck with doing something on this project you can hit me up on Discord -> "Shy Devil#0001". Issues will still be resolved as good as possible.
+
+<br>
+
+## YouTube Videos
+I've seen some people making videos about my ransomware project. This is fine and all but they dont link to the correct repo, isntead they link forks that dont get updated. If you do make a video make sure to link hackthedev/teardrop, as this is the original and up-to-date version. You can also link your own fork of course.
 
 <br>
 
@@ -43,6 +48,4 @@ I've planned to keep updating this project and fixing bugs. If you've found any 
 <br>
 
 ## Screenshots
-<img title="Cant show file name because it's bad language" src="https://shy-devils.life-is-pa.in/6bO0ev.jpeg" />
-<img title="Current Style - App in Action" src="https://shy-devils.life-is-pa.in/YnaurD.gif" />
-<img title="File after being encrypted" src="https://shy-devils.life-is-pa.in/YCurqy.png" />
+comming soon again
