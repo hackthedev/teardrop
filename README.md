@@ -48,4 +48,5 @@ I've planned to keep updating this project and fixing bugs. If you've found any 
 <br>
 
 ## Screenshots
-comming soon again
+Wie du deine eigene Ransomware machst! [GERMAN VOICE] (YouTube Video)
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/19cH8GDsadM/0.jpg)](https://www.youtube.com/watch?v=19cH8GDsadM)
