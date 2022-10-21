@@ -19,7 +19,7 @@ Welcome to the teardrop Ransomware Project. This project was created for educati
 - Make Application Unkillable
 - Register Application in StartUp
 - Theme "System"
-- Encryption Fuse [this](https://github.com/hackthedev/teardrop/blob/master/teardrop/teardrop/Form1.cs#L450-L463)
+- Encryption [Fuse](https://github.com/hackthedev/teardrop/blob/master/teardrop/teardrop/Form1.cs#L450-L463)
 
 <br>
 
