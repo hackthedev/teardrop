@@ -19,12 +19,12 @@ Welcome to the teardrop Ransomware Project. This project was created for educati
 - Make Application Unkillable
 - Register Application in StartUp
 - Theme "System"
-- Encryption Fuse 
+- Encryption Fuse [this](https://github.com/hackthedev/teardrop/blob/master/teardrop/teardrop/Form1.cs#L450-L463)
 
 <br>
 
 ## Help 
-If you're stuck with doing something on this project you can hit me up on Discord -> "Shy Devil#0001". Issues will still be resolved as good as possible.
+If you're stuck with doing something on this project you can hit me up on Discord (above link) or via Email (admin [at] shy-devil [dot] me. Issues will still be resolved as good as possible.
 
 <br>
 
