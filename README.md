@@ -41,7 +41,7 @@ I've planned to keep updating this project and fixing bugs. If you've found any 
 ## Badge Meanings
 | Status | Description |
 | --- | --- |
-| ![Dev Paused](https://img.shields.io/badge/Development-Paused-orange) | The development is currently paused. This might be due to a lack of time or similar reasons. |
+| ![Dev Paused](https://img.shields.io/badge/Development-Paused-orange) | The development is currently paused because im busy. I'll try to help tho |
 | ![Dev Continued](https://img.shields.io/badge/Development-Continued-informational) | Im ready to work on the project and try to improve it as good as I can. |
 | ![Dev Canceled](https://img.shields.io/badge/Development-Canceled-lightgrey) | The project was canceled for a unknown reason which will be given at the right timing |
 
