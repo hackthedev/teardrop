@@ -2,6 +2,10 @@
 Welcome to the teardrop Ransomware Project. This project was created for educational purposes <b>only</b>. If you want to harm someone, it is your fault if something happens. I do not take any responsibility for damage that might've been caused by one of your actions. In order to use my finished code read the terms and conditions in the [LICENSE](LICENSE) file
 
 [Discuss on Discord](https://discord.com/invite/KBEZtp2Jtd)
+<br><br>
+
+If you want to help me or send me motivation, star this repository and share it with like minded people :)
+
 
 <br>
 
@@ -25,11 +29,6 @@ Welcome to the teardrop Ransomware Project. This project was created for educati
 
 ## Help 
 If you're stuck with doing something on this project you can hit me up on Discord (above link) or via Email (admin [at] shy-devil [dot] me. Issues will still be resolved as good as possible.
-
-<br>
-
-## YouTube Videos
-I've seen some people making videos about my ransomware project. This is fine and all but they dont link to the correct repo, isntead they link forks that dont get updated. If you do make a video make sure to link hackthedev/teardrop, as this is the original and up-to-date version. You can also link your own fork of course. Its just so that new users get a better experience and dont have to deal with outdated forks of this project.
 
 <br>
 
