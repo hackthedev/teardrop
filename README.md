@@ -1,7 +1,7 @@
 # teardrop - Ransomware ![Dev Status](https://img.shields.io/badge/Development-Paused-orange)
 Welcome to the teardrop Ransomware Project. This project was created for educational purposes <b>only</b>. If you want to harm someone, it is your fault if something happens. I do not take any responsibility for damage that might've been caused by one of your actions. In order to use my finished code read the terms and conditions in the [LICENSE](LICENSE) file
 
-[Discuss on Discord](https://discord.com/invite/KBEZtp2Jtd)
+
 <br><br>
 
 If you want to help me or send me motivation, star this repository and share it with like minded people :)
