@@ -44,8 +44,3 @@ I've planned to keep updating this project and fixing bugs. If you've found any 
 | ![Dev Continued](https://img.shields.io/badge/Development-Continued-informational) | Im ready to work on the project and try to improve it as good as I can. |
 | ![Dev Canceled](https://img.shields.io/badge/Development-Canceled-lightgrey) | The project was canceled for a unknown reason which will be given at the right timing |
 
-<br>
-
-## Screenshots
-Wie du deine eigene Ransomware machst! [GERMAN VOICE] (YouTube Video)
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/19cH8GDsadM/0.jpg)](https://www.youtube.com/watch?v=19cH8GDsadM)
